@@ -70,4 +70,7 @@ dependencies {
     //hilt
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
+
+    //lottieFiles
+    implementation 'com.airbnb.android:lottie:5.2.0'
 }
