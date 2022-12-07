@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/ac_tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_17"
+        android:layout_marginEnd="@dimen/dp_15"
+        android:fontFamily="@font/assistant_extra_bold"
+        android:text="@string/tracker"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_24"
+        app:autoSizeMaxTextSize="@dimen/sp_24"
+        app:autoSizeMinTextSize="@dimen/sp_10"
+        app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toStartOf="@+id/ac_tv_history"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/ac_tv_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:background="@drawable/translucence_clickable_view"
+        android:fontFamily="@font/assistant_regular"
+        android:paddingStart="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_5"
+        android:text="@string/history"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_18"
+        app:layout_constraintBottom_toBottomOf="@+id/ac_tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ac_tv_title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_tracker"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_20"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ac_tv_title">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ac_iv_left"
+                android:layout_width="@dimen/dp_28"
+                android:layout_height="@dimen/dp_28"
+                android:layout_marginStart="@dimen/dp_15"
+                android:background="@drawable/translucence_clickable_view_round"
+                android:padding="@dimen/dp_2"
+                android:scaleX="-1"
+                android:src="@drawable/icon_general_chevron"
+                app:layout_constraintBottom_toBottomOf="@+id/ac_tv_dimensionality"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ac_tv_dimensionality" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:text="@string/sample_data"
+                android:id="@+id/ac_tv_dimensionality"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_15"
+                android:layout_marginEnd="@dimen/dp_15"
+                android:fontFamily="@font/assistant_extra_bold"
+                android:gravity="center"
+                android:lines="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_18"
+                app:autoSizeMaxTextSize="@dimen/sp_18"
+                app:autoSizeMinTextSize="@dimen/sp_10"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toStartOf="@+id/ac_iv_right"
+                app:layout_constraintStart_toEndOf="@+id/ac_iv_left"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ac_iv_right"
+                android:layout_width="@dimen/dp_28"
+                android:layout_height="@dimen/dp_28"
+                android:layout_marginEnd="@dimen/dp_15"
+                android:background="@drawable/translucence_clickable_view_round"
+                android:padding="@dimen/dp_2"
+                android:src="@drawable/icon_general_chevron"
+                app:layout_constraintBottom_toBottomOf="@+id/ac_tv_dimensionality"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ac_tv_dimensionality" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_top_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_18"
+                android:layout_marginTop="@dimen/dp_17"
+                android:layout_marginEnd="@dimen/dp_18"
+                app:layout_constraintTop_toBottomOf="@+id/ac_tv_dimensionality">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gl_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.4" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gl_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.75" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ac_tv_systolic_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_4"
+                    android:fontFamily="@font/assistant_regular"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="@string/systolic"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16"
+                    app:autoSizeMaxTextSize="@dimen/sp_16"
+                    app:autoSizeMinTextSize="@dimen/sp_10"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="none"
+                    app:layout_constraintEnd_toStartOf="@+id/gl_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ac_tv_systolic_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_extra_bold"
+                    android:lines="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_32"
+                    app:autoSizeMaxTextSize="@dimen/sp_32"
+                    app:autoSizeMinTextSize="@dimen/sp_10"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ac_tv_systolic_title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ac_tv_systolic_unit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_3"
+                    android:fontFamily="@font/assistant_regular"
+                    android:lines="1"
+                    android:text="@string/mmhg"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14"
+                    app:autoSizeMaxTextSize="@dimen/sp_14"
+                    app:autoSizeMinTextSize="@dimen/sp_10"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/ac_tv_systolic_num"
+                    app:layout_constraintEnd_toStartOf="@+id/gl_1"
+                    app:layout_constraintStart_toEndOf="@+id/ac_tv_systolic_num" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ac_tv_diastolic_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_4"
+                    android:fontFamily="@font/assistant_regular"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="@string/diastolic"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16"
+                    app:autoSizeMaxTextSize="@dimen/sp_16"
+                    app:autoSizeMinTextSize="@dimen/sp_10"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toStartOf="@+id/gl_2"
+                    app:layout_constraintStart_toEndOf="@+id/gl_1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ac_tv_diastolic_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_extra_bold"
+                    android:lines="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_32"
+                    app:autoSizeMaxTextSize="@dimen/sp_32"
+                    app:autoSizeMinTextSize="@dimen/sp_10"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/gl_1"
+                    app:layout_constraintTop_toBottomOf="@+id/ac_tv_diastolic_title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ac_tv_diastolic_unit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_3"
+                    android:fontFamily="@font/assistant_regular"
+                    android:lines="1"
+                    android:text="@string/mmhg"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14"
+                    app:autoSizeMaxTextSize="@dimen/sp_14"
+                    app:autoSizeMinTextSize="@dimen/sp_10"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/ac_tv_diastolic_num"
+                    app:layout_constraintEnd_toStartOf="@+id/gl_2"
+                    app:layout_constraintStart_toEndOf="@+id/ac_tv_diastolic_num" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ac_tv_pulse_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_regular"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="@string/pulse"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16"
+                    app:autoSizeMaxTextSize="@dimen/sp_16"
+                    app:autoSizeMinTextSize="@dimen/sp_10"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/gl_2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ac_tv_pulse_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_extra_bold"
+                    android:lines="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_32"
+                    app:autoSizeMaxTextSize="@dimen/sp_32"
+                    app:autoSizeMinTextSize="@dimen/sp_10"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/gl_2"
+                    app:layout_constraintTop_toBottomOf="@+id/ac_tv_pulse_title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ac_tv_pulse_unit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_3"
+                    android:fontFamily="@font/assistant_regular"
+                    android:lines="1"
+                    android:text="@string/bpm"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14"
+                    app:autoSizeMaxTextSize="@dimen/sp_14"
+                    app:autoSizeMinTextSize="@dimen/sp_10"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/ac_tv_pulse_num"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ac_tv_pulse_num" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--<bloodpressure.bloodpressureapp.bloodpressuretracker.views.chart.TrackerChartLayout
+                android:id="@+id/tcl"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_198"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginEnd="@dimen/dp_20"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/cl_top_data"
+                app:layout_constraintVertical_chainStyle="2" />-->
+            <TextView
+                android:id="@+id/tcl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_top_data" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_32"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tcl" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_tracker_add"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_13"
+        android:background="@drawable/buttons_ripple"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ac_iv_add"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_marginEnd="@dimen/dp_7"
+            android:src="@drawable/icon_general_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ac_tv_add"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ac_tv_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/assistant_extra_bold"
+            android:gravity="center"
+            android:text="@string/add"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/ac_iv_add"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        layout="@layout/empty_cover"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ac_tv_title" />
+</androidx.constraintlayout.widget.ConstraintLayout>
