@@ -26,7 +26,7 @@ class SplashFragment : BaseFragment<SplashViewModel, FragmentSplashBinding>() {
         val coroutine = CoroutineScope(Dispatchers.Main)
         coroutine.launch {
             delay(2000)
-
+            Navigation.findNavController(requireActivity(),R.id.flTabContainer).navigate(R.id.action_splashFragment_to_introFragment)
         }
 
     }

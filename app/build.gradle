@@ -76,4 +76,8 @@ dependencies {
 
     //coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+
+    //zphan banner
+    implementation 'com.github.zhpanvip:bannerviewpager:3.5.8'
+
 }

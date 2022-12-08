@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="2dp">
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_gd_2"
+        app:layout_constraintDimensionRatio="1125:1290"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="@dimen/dp_136"
+        android:layout_height="@dimen/dp_136"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_gd_heart"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_icon"
+        app:layout_constraintStart_toStartOf="@+id/iv_icon"
+        app:layout_constraintTop_toTopOf="@+id/iv_icon"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardGuild2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_54"
+        android:background="@drawable/bg_gradient_guild2"
+        android:paddingBottom="@dimen/dp_15"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_icon"
+        app:layout_constraintVertical_bias="0.7"
+        app:layout_constraintWidth_percent="0.73">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_top_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_17"
+            android:layout_marginEnd="@dimen/dp_18"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.4" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ac_tv_systolic_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:fontFamily="@font/assistant_regular"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:text="@string/systolic"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_13"
+                app:autoSizeMaxTextSize="@dimen/sp_13"
+                app:autoSizeMinTextSize="@dimen/sp_10"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toStartOf="@+id/gl_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ac_tv_systolic_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/assistant_extra_bold"
+                android:lines="1"
+                android:text="122"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_23"
+                app:autoSizeMaxTextSize="@dimen/sp_23"
+                app:autoSizeMinTextSize="@dimen/sp_10"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ac_tv_systolic_title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ac_tv_systolic_unit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_3"
+                android:fontFamily="@font/assistant_regular"
+                android:lines="1"
+                android:text="@string/mmhg"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_10"
+                app:autoSizeMaxTextSize="@dimen/sp_10"
+                app:autoSizeMinTextSize="2sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBaseline_toBaselineOf="@+id/ac_tv_systolic_num"
+                app:layout_constraintEnd_toStartOf="@+id/gl_1"
+                app:layout_constraintStart_toEndOf="@+id/ac_tv_systolic_num" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ac_tv_diastolic_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:fontFamily="@font/assistant_regular"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:text="@string/diastolic"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_13"
+                app:autoSizeMaxTextSize="@dimen/sp_13"
+                app:autoSizeMinTextSize="@dimen/sp_10"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toStartOf="@+id/gl_2"
+                app:layout_constraintStart_toEndOf="@+id/gl_1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ac_tv_diastolic_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/assistant_extra_bold"
+                android:lines="1"
+                android:text="84"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_23"
+                app:autoSizeMaxTextSize="@dimen/sp_23"
+                app:autoSizeMinTextSize="@dimen/sp_10"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gl_1"
+                app:layout_constraintTop_toBottomOf="@+id/ac_tv_diastolic_title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ac_tv_diastolic_unit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_3"
+                android:fontFamily="@font/assistant_regular"
+                android:lines="1"
+                android:text="@string/mmhg"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_10"
+                app:autoSizeMaxTextSize="@dimen/sp_10"
+                app:autoSizeMinTextSize="2sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBaseline_toBaselineOf="@+id/ac_tv_diastolic_num"
+                app:layout_constraintEnd_toStartOf="@+id/gl_2"
+                app:layout_constraintStart_toEndOf="@+id/ac_tv_diastolic_num" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ac_tv_pulse_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/assistant_regular"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:text="@string/pulse"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_13"
+                app:autoSizeMaxTextSize="@dimen/sp_13"
+                app:autoSizeMinTextSize="@dimen/sp_10"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gl_2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ac_tv_pulse_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/assistant_extra_bold"
+                android:lines="1"
+                android:text="80"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_23"
+                app:autoSizeMaxTextSize="@dimen/sp_23"
+                app:autoSizeMinTextSize="@dimen/sp_10"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gl_2"
+                app:layout_constraintTop_toBottomOf="@+id/ac_tv_pulse_title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ac_tv_pulse_unit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_3"
+                android:fontFamily="@font/assistant_regular"
+                android:lines="1"
+                android:text="@string/bpm"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_10"
+                app:autoSizeMaxTextSize="@dimen/sp_10"
+                app:autoSizeMinTextSize="2sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBaseline_toBaselineOf="@+id/ac_tv_pulse_num"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ac_tv_pulse_num" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/img_gd_data"
+            app:layout_constraintDimensionRatio="795:420"
+            app:layout_constraintEnd_toEndOf="@+id/cl_top_data"
+            app:layout_constraintStart_toStartOf="@+id/cl_top_data"
+            app:layout_constraintTop_toBottomOf="@+id/cl_top_data" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_gradient_guild"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_icon"
+        app:layout_constraintTop_toTopOf="@+id/cardGuild2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_intro_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_30"
+        android:layout_marginEnd="@dimen/dp_30"
+        android:fontFamily="@font/assistant_extra_bold"
+        android:lineSpacingMultiplier="0.8"
+        android:maxLines="2"
+        android:text="@string/graph_trends_statistics"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_32"
+        app:autoSizeMaxTextSize="@dimen/dp_32"
+        app:autoSizeMinTextSize="@dimen/dp_16"
+        app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/tv_intro_sub_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardGuild2"
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_intro_sub_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_150"
+        android:fontFamily="@font/assistant_regular"
+        android:lineSpacingMultiplier="0.8"
+        android:maxLines="2"
+        android:text="@string/know_bp_trends"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_16"
+        app:autoSizeMaxTextSize="@dimen/dp_16"
+        app:autoSizeMinTextSize="@dimen/dp_10"
+        app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_intro_title" />
+</androidx.constraintlayout.widget.ConstraintLayout>
