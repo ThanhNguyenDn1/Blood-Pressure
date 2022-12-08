@@ -18,7 +18,7 @@ class IntroFragment : BaseFragment<IntroViewModel, FragmentIntroBinding>() {
     private val data: List<Int>
         get() {
             val list = ArrayList<Int>()
-            for (i in 0..3) {
+            for (i in 0..2) {
                 list.add(i)
             }
             return list
@@ -42,11 +42,10 @@ class IntroFragment : BaseFragment<IntroViewModel, FragmentIntroBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bannerViewPager = view.findViewById(R.id.viewPager)
-        bannerViewPager.setOnClickListener {
-            bannerViewPager.apply {
-                adapter = GuideAdapter()
-            }.create(data)
-        }
+        bannerViewPager.apply {
+            registerLifecycleObserver(lifecycle)
+            adapter = GuideAdapter()
+        }.create(data)
 
     }
 }
