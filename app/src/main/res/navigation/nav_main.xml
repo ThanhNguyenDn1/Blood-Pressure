@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/editRecordFragment">
 
 
     <fragment
@@ -13,7 +13,11 @@
     <fragment
         android:id="@+id/actionTracker"
         android:name="com.example.bloodpressure.ui.main.tracker.TrackerFragment"
-        android:label="TrackerFragment" />
+        android:label="TrackerFragment" >
+        <action
+            android:id="@+id/action_actionTracker_to_editRecordFragment"
+            app:destination="@id/editRecordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/actionSettings"
         android:name="com.example.bloodpressure.ui.main.settings.SettingsFragment"
@@ -22,17 +26,34 @@
     <fragment
         android:id="@+id/introFragment"
         android:name="com.example.bloodpressure.ui.intro.IntroFragment"
-        android:label="IntroFragment" />
+        android:label="IntroFragment" >
+        <action
+            android:id="@+id/action_introFragment_to_actionInfo"
+            app:destination="@id/actionInfo" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.bloodpressure.ui.splash.SplashFragment"
         android:label="activity_splash"
         tools:layout="@layout/fragment_splash" >
         <action
-            android:id="@+id/action_splashFragment_to_introFragment"
-            app:destination="@id/introFragment" />
-        <action
             android:id="@+id/action_splashFragment_to_actionInfo"
             app:destination="@id/actionInfo" />
+        <action
+            android:id="@+id/action_splashFragment_to_guideLanguageFragment"
+            app:destination="@id/guideLanguageFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/guideLanguageFragment"
+        android:name="com.example.bloodpressure.ui.guideLanguage.GuideLanguageFragment"
+        android:label="GuideLanguageFragment" >
+        <action
+            android:id="@+id/action_guideLanguageFragment_to_introFragment"
+            app:destination="@id/introFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editRecordFragment"
+        android:name="com.example.bloodpressure.ui.main.editRecord.EditRecordFragment"
+        android:label="fragment_edit_record"
+        tools:layout="@layout/fragment_edit_record" />
 </navigation>

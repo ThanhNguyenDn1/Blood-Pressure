@@ -17,11 +17,13 @@
         app:navGraph="@navigation/nav_main" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:visibility="gone"
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_72"
         android:background="@color/page_bg"
+        android:visibility="gone"
+        app:itemIconTint="@color/ic_nav_bottom_bar_selected"
+        app:itemTextColor="@color/ic_nav_bottom_bar_selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_main" />
 

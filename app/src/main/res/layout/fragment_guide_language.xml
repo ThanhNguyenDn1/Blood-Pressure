@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececee">
+
+    <TextView
+        android:id="@+id/top_view0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/btn_bg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        android:background="@color/btn_bg"
+        app:layout_constraintTop_toBottomOf="@+id/top_view0" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/acTvChoose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_28"
+        android:fontFamily="@font/assistant_bold"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/language_title"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_24"
+        app:autoSizeMaxTextSize="@dimen/sp_24"
+        app:autoSizeMinTextSize="@dimen/sp_18"
+        app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_view0" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnStart"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:padding="@dimen/dp_10"
+        android:src="@drawable/icon_language_check"
+        app:layout_constraintBottom_toBottomOf="@+id/acTvChoose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/acTvChoose" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/net_s"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_20"
+        app:layout_constraintBottom_toTopOf="@+id/ad_card"
+        app:layout_constraintTop_toBottomOf="@+id/acTvChoose">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGuideLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_15"
+                android:nestedScrollingEnabled="false"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_80" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:id="@+id/ad_top_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_100"
+        android:background="@drawable/bg_gradient_guild_light"
+        app:layout_constraintBottom_toTopOf="@+id/ad_card" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/ad_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_12"
+        android:layout_marginEnd="@dimen/dp_12"
+        android:elevation="0dp"
+        android:paddingTop="@dimen/dp_12"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/dp_12"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <FrameLayout
+            android:id="@+id/ad_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:layout_marginBottom="@dimen/dp_12" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/ad_loading_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_250"
+            android:padding="@dimen/dp_4"
+            android:scaleType="fitXY"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/ad_card_loading"
+            app:lottie_repeatMode="restart" />
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

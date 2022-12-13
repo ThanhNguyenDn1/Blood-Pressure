@@ -80,4 +80,12 @@ dependencies {
     //zphan banner
     implementation 'com.github.zhpanvip:bannerviewpager:3.5.8'
 
+    //chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //number-picker
+    implementation 'io.github.ShawnLin013:number-picker:2.4.13'
+//joda time
+    implementation 'net.danlew:android.joda:2.12.1.1'
+
 }

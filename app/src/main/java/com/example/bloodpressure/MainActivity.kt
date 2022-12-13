@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             bottomBar.setupWithNavController(findNavController(R.id.flTabContainer))
         }
-        //config.setStatusBar(this, false)
     }
 
     fun visibilityBottomBar(isShow: Boolean) {

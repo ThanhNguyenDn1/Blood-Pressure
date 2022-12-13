@@ -21,15 +21,14 @@ class SplashFragment : BaseFragment<SplashViewModel, FragmentSplashBinding>() {
     override fun provideViewBinding(inflater: LayoutInflater, container: ViewGroup?) =
         FragmentSplashBinding.inflate(LayoutInflater.from(inflater.context), container, false)
 
-    override fun setUpView() {
-        super.setUpView()
+    override fun handlerEvent() {
+        super.handlerEvent()
         val coroutine = CoroutineScope(Dispatchers.Main)
         coroutine.launch {
             delay(2000)
-            Navigation.findNavController(requireActivity(),R.id.flTabContainer).navigate(R.id.action_splashFragment_to_introFragment)
+            Navigation.findNavController(requireActivity(), R.id.flTabContainer)
+                .navigate(R.id.action_splashFragment_to_guideLanguageFragment)
         }
-
     }
-
 
 }

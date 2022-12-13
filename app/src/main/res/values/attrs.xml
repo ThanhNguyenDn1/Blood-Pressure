@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RadiusCardView">
+        <attr name="bottomLeftRadius" format="integer" />
+        <attr name="bottomRightRadius" format="integer" />
+        <attr name="topLeftRadius" format="integer" />
+        <attr name="topRightRadius" format="integer" />
+    </declare-styleable>
+
+
+
+
+</resources>

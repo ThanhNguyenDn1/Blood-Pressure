@@ -5,15 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.example.bloodpressure.R
 import com.example.bloodpressure.adapter.GuideAdapter
 import com.example.bloodpressure.base.BaseFragment
 import com.example.bloodpressure.databinding.FragmentIntroBinding
+import com.example.bloodpressure.utils.ConfigScreen
 import com.zhpan.bannerview.BannerViewPager
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class IntroFragment : BaseFragment<IntroViewModel, FragmentIntroBinding>() {
     override val viewModel: IntroViewModel by viewModels()
     private lateinit var bannerViewPager: BannerViewPager<Int>
+
+    @Inject
+    lateinit var configScreen: ConfigScreen
 
     private val data: List<Int>
         get() {
@@ -28,15 +36,11 @@ class IntroFragment : BaseFragment<IntroViewModel, FragmentIntroBinding>() {
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentIntroBinding.inflate(LayoutInflater.from(inflater.context), container, false)
 
-    override fun setUpData() {
-        super.setUpData()
-
-
-    }
-
     override fun setUpView() {
         super.setUpView()
-
+        configScreen.setStatusBar(
+            activity = requireActivity(), isDecorFitsSystem = false, color = R.color.transparent
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,5 +51,12 @@ class IntroFragment : BaseFragment<IntroViewModel, FragmentIntroBinding>() {
             adapter = GuideAdapter()
         }.create(data)
 
+    }
+
+    override fun handlerEvent() {
+        super.handlerEvent()
+        binding.btnStart.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_introFragment_to_actionInfo)
+        }
     }
 }

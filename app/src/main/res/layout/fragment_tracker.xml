@@ -71,7 +71,6 @@
                 app:layout_constraintTop_toTopOf="@+id/ac_tv_dimensionality" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:text="@string/sample_data"
                 android:id="@+id/ac_tv_dimensionality"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -80,6 +79,7 @@
                 android:fontFamily="@font/assistant_extra_bold"
                 android:gravity="center"
                 android:lines="1"
+                android:text="@string/sample_data"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_18"
                 app:autoSizeMaxTextSize="@dimen/sp_18"
@@ -285,7 +285,7 @@
                     app:layout_constraintStart_toEndOf="@+id/ac_tv_pulse_num" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--<bloodpressure.bloodpressureapp.bloodpressuretracker.views.chart.TrackerChartLayout
+        <!--    <bloodpressure.bloodpressureapp.bloodpressuretracker.views.chart.TrackerChartLayout
                 android:id="@+id/tcl"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_198"
@@ -357,6 +357,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
+        android:id="@+id/cl_empty_cover"
         layout="@layout/empty_cover"
         android:layout_width="match_parent"
         android:layout_height="0dp"
