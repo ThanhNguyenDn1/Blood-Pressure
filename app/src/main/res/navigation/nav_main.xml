@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/editRecordFragment">
+    app:startDestination="@id/splashFragment">
 
 
     <fragment
@@ -13,10 +13,13 @@
     <fragment
         android:id="@+id/actionTracker"
         android:name="com.example.bloodpressure.ui.main.tracker.TrackerFragment"
-        android:label="TrackerFragment" >
+        android:label="TrackerFragment">
         <action
             android:id="@+id/action_actionTracker_to_editRecordFragment"
             app:destination="@id/editRecordFragment" />
+        <action
+            android:id="@+id/action_actionTracker_to_historyFragment"
+            app:destination="@id/historyFragment" />
     </fragment>
     <fragment
         android:id="@+id/actionSettings"
@@ -26,7 +29,7 @@
     <fragment
         android:id="@+id/introFragment"
         android:name="com.example.bloodpressure.ui.intro.IntroFragment"
-        android:label="IntroFragment" >
+        android:label="IntroFragment">
         <action
             android:id="@+id/action_introFragment_to_actionInfo"
             app:destination="@id/actionInfo" />
@@ -35,7 +38,7 @@
         android:id="@+id/splashFragment"
         android:name="com.example.bloodpressure.ui.splash.SplashFragment"
         android:label="activity_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_actionInfo"
             app:destination="@id/actionInfo" />
@@ -46,7 +49,7 @@
     <fragment
         android:id="@+id/guideLanguageFragment"
         android:name="com.example.bloodpressure.ui.guideLanguage.GuideLanguageFragment"
-        android:label="GuideLanguageFragment" >
+        android:label="GuideLanguageFragment">
         <action
             android:id="@+id/action_guideLanguageFragment_to_introFragment"
             app:destination="@id/introFragment" />
@@ -55,5 +58,28 @@
         android:id="@+id/editRecordFragment"
         android:name="com.example.bloodpressure.ui.main.editRecord.EditRecordFragment"
         android:label="fragment_edit_record"
-        tools:layout="@layout/fragment_edit_record" />
+        tools:layout="@layout/fragment_edit_record">
+        <action
+            android:id="@+id/action_editRecordFragment_to_knowledgeDetailFragment"
+            app:destination="@id/knowledgeDetailFragment" />
+        <action
+            android:id="@+id/action_editRecordFragment_to_editAddNoteFragment"
+            app:destination="@id/editAddNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/knowledgeDetailFragment"
+        android:name="com.example.bloodpressure.ui.main.KnowledgeDetail.KnowledgeDetailFragment"
+        android:label="KnowledgeDetailFragment" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.bloodpressure.ui.main.history.HistoryFragment"
+        android:label="HistoryFragment" >
+        <action
+            android:id="@+id/action_historyFragment_to_editRecordFragment"
+            app:destination="@id/editRecordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editAddNoteFragment"
+        android:name="com.example.bloodpressure.ui.main.editAddNote.EditAddNoteFragment"
+        android:label="EditAddNoteFragment" />
 </navigation>

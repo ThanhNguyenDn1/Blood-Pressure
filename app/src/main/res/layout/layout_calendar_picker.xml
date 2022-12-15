@@ -28,9 +28,9 @@
         app:np_dividerColor="@color/picker_divide"
         app:np_itemSpacing="@dimen/dp_8"
         app:np_selectedTextColor="@color/white"
-        app:np_selectedTextSize="@dimen/sp_28"
+        app:np_selectedTextSize="@dimen/sp_18"
         app:np_textColor="@color/white_20"
-        app:np_textSize="@dimen/sp_28"
+        app:np_textSize="@dimen/sp_18"
         app:np_wheelItemCount="3"
         app:np_wrapSelectorWheel="false" />
 
@@ -56,9 +56,9 @@
         app:np_dividerColor="@color/picker_divide"
         app:np_itemSpacing="@dimen/dp_8"
         app:np_selectedTextColor="@color/white"
-        app:np_selectedTextSize="@dimen/sp_28"
+        app:np_selectedTextSize="@dimen/sp_18"
         app:np_textColor="@color/white_20"
-        app:np_textSize="@dimen/sp_28"
+        app:np_textSize="@dimen/sp_18"
         app:np_wheelItemCount="3"
         app:np_wrapSelectorWheel="false" />
 
@@ -83,9 +83,9 @@
         app:np_dividerColor="@color/picker_divide"
         app:np_itemSpacing="@dimen/dp_8"
         app:np_selectedTextColor="@color/white"
-        app:np_selectedTextSize="@dimen/sp_28"
+        app:np_selectedTextSize="@dimen/sp_18"
         app:np_textColor="@color/white_20"
-        app:np_textSize="@dimen/sp_28"
+        app:np_textSize="@dimen/sp_18"
         app:np_wheelItemCount="3"
         app:np_wrapSelectorWheel="true" />
 
@@ -134,9 +134,9 @@
         app:np_dividerColor="@color/picker_divide"
         app:np_itemSpacing="@dimen/dp_8"
         app:np_selectedTextColor="@color/white"
-        app:np_selectedTextSize="@dimen/sp_28"
+        app:np_selectedTextSize="@dimen/sp_18"
         app:np_textColor="@color/white_20"
-        app:np_textSize="@dimen/sp_28"
+        app:np_textSize="@dimen/sp_18"
         app:np_wheelItemCount="3"
         app:np_wrapSelectorWheel="true" />
 

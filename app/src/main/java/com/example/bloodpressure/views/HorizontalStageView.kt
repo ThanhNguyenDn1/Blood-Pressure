@@ -1,97 +1,53 @@
 package com.example.bloodpressure.views
 
 import android.content.Context
+import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.res.ResourcesCompat
-import com.example.bloodpressure.R
+import com.example.bloodpressure.callBack.ListenerHorizontalStage
 import com.example.bloodpressure.databinding.LayoutHorizatalStageBinding
+import com.example.bloodpressure.utils.Stage
 
 class HorizontalStageView(context: Context?, attrs: AttributeSet?) :
     ConstraintLayout(context!!, attrs) {
     private var binding: LayoutHorizatalStageBinding
-    private lateinit var state: Stage
+    private var stage: Stage
+    private lateinit var callBack: ListenerHorizontalStage
 
     init {
         binding = LayoutHorizatalStageBinding.inflate(LayoutInflater.from(context), this, false)
         addView(binding.root)
-        state = Stage.STAGE_NORMAL
-        initView()
-
+        stage = Stage.STAGE_NORMAL
     }
 
-    private fun initView() {
-        binding.healthGoals.text=context.getString(state.healthGoals())
+    fun updateData(systolic: Int = 100, diastolic: Int = 75, pulse: Int = 70) {
+        stage = stage.getStatusHealth(systolic, diastolic)
+        callBack.onChangeStage(
+            stage.getStage(), stage.getStageRange(), stage.getStageContent(), stage.getColorStage()
+        )
+        updateView(stage.ordinal)
     }
 
+    private fun updateView(ordinal: Int) {
+        binding.apply {
+            view1.isSelected = if (ordinal == 0) true else false
+            view2.isSelected = if (ordinal == 1) true else false
+            view3.isSelected = if (ordinal == 2) true else false
+            view4.isSelected = if (ordinal == 3) true else false
+            view5.isSelected = if (ordinal == 4) true else false
+            view6.isSelected = if (ordinal == 5) true else false
 
-    enum class Stage {
-        STAGE_HYPOTENSION, STAGE_NORMAL, STAGE_ELEVATED, STAGE_HYPERTENSION_1, STAGE_HYPERTENSION_2, STAGE_HYPERTENSIVE;
-
-        fun getStatusHealth(i: Int, i2: Int): Stage {
-            var z = true
-            if (90 <= i && i < 120) {
-                if (60 <= i2 && i2 < 80) {
-                    return STAGE_NORMAL
-                }
-            }
-            if (120 <= i && i < 130) {
-                if (60 > i2 || i2 >= 80) {
-                    z = false
-                }
-                if (z) {
-                    return STAGE_ELEVATED
-                }
-            }
-            return if (i >= 130 || i2 >= 80) if (i >= 140 || i2 >= 90) if (i > 180 || i2 > 120) STAGE_HYPERTENSIVE else STAGE_HYPERTENSION_2 else STAGE_HYPERTENSION_1 else STAGE_HYPOTENSION
+            triangle1.visibility = if (ordinal == 0) VISIBLE else INVISIBLE
+            triangle2.visibility = if (ordinal == 1) VISIBLE else INVISIBLE
+            triangle3.visibility = if (ordinal == 2) VISIBLE else INVISIBLE
+            triangle4.visibility = if (ordinal == 3) VISIBLE else INVISIBLE
+            triangle5.visibility = if (ordinal == 4) VISIBLE else INVISIBLE
+            triangle6.visibility = if (ordinal == 5) VISIBLE else INVISIBLE
         }
+    }
 
-
-        fun getTitle(): Int {
-            val ordinal = ordinal
-            if (ordinal == 0) {
-                return R.string.hypotension
-            }
-            if (ordinal == 1) {
-                return R.string.normal_leg
-            }
-            if (ordinal == 2) {
-                return R.string.elevated
-            }
-            if (ordinal == 3) {
-                return R.string.hypertension_1
-            }
-            if (ordinal == 4) {
-                return R.string.hypertension_2
-            } else {
-                return R.string.hypertensive
-            }
-
-        }
-
-        fun healthGoals(): Int {
-            val ordinal = ordinal
-            if (ordinal == 0) {
-                return R.string.range_hypotension
-            }
-            if (ordinal == 1) {
-                return R.string.range_normal
-            }
-            if (ordinal == 2) {
-                return R.string.range_elevated
-            }
-            if (ordinal == 3) {
-                return R.string.range_hypertension_1
-            }
-            if (ordinal == 4) {
-                return R.string.range_hypertension_2
-            }
-            if (ordinal == 5) {
-                return R.string.range_hypertensive
-            }
-            throw IllegalArgumentException()
-        }
-
+    fun addCallBack(callBack: ListenerHorizontalStage) {
+        this.callBack = callBack
     }
 }

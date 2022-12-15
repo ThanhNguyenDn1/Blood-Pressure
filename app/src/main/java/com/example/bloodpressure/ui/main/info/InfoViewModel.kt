@@ -1,8 +1,7 @@
 package com.example.bloodpressure.ui.main.info
 
-import androidx.lifecycle.ViewModel
 import com.example.bloodpressure.base.BaseViewModel
+import javax.inject.Inject
 
-class InfoViewModel : BaseViewModel() {
-    // TODO: Implement the ViewModel
+class InfoViewModel @Inject constructor() : BaseViewModel() {
 }

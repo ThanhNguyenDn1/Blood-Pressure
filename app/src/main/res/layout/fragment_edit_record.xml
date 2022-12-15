@@ -92,6 +92,7 @@
             app:layout_constraintVertical_chainStyle="packed">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:src="@drawable/stage_round"
                 android:id="@+id/ac_iv_icon"
                 android:layout_width="@dimen/dp_18"
                 android:layout_height="@dimen/dp_18"
@@ -156,6 +157,7 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
         <com.example.bloodpressure.views.HorizontalStageView
+            android:layout_marginTop="@dimen/dp_10"
             android:id="@+id/hsv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -166,6 +168,7 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:paddingVertical="@dimen/dp_10"
             android:id="@+id/tv_stage_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -193,8 +196,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/banner_layout"
         app:layout_constraintHeight_percent="0.3"
-        app:topLeftRadius="@dimen/mtrl_navigation_item_horizontal_padding"
-        app:topRightRadius="@dimen/mtrl_navigation_item_horizontal_padding">
+        app:topLeftRadius="@dimen/cm_dp_22"
+        app:topRightRadius="@dimen/cm_dp_22">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

@@ -12,7 +12,7 @@
         android:foreground="@drawable/translucence_clickable_view"
         android:paddingStart="@dimen/dp_12"
         android:paddingEnd="@dimen/dp_12"
-        android:visibility="visible"
+        android:visibility="gone"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -76,7 +76,7 @@
         android:foreground="@drawable/translucence_clickable_view"
         android:paddingStart="@dimen/dp_12"
         android:paddingEnd="@dimen/dp_12"
-        android:visibility="visible"
+        android:visibility="gone"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -155,7 +155,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_10"
         android:foreground="@color/home_record_bg"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         app:topLeftRadius="@dimen/dp_10"
         app:topRightRadius="@dimen/dp_10" />
@@ -164,7 +164,7 @@
         android:id="@+id/rcv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         app:topLeftRadius="@dimen/dp_10"
         app:topRightRadius="@dimen/dp_10">
@@ -389,7 +389,7 @@
         android:id="@+id/cl_newline_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

@@ -8,6 +8,7 @@
     android:background="@drawable/bg_history_item">
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:text="100"
         android:id="@+id/ac_tv_systolic"
         android:layout_width="@dimen/dp_40"
         android:layout_height="@dimen/dp_26"
@@ -26,6 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:text="75"
         android:id="@+id/ac_tv_diastolic"
         android:layout_width="@dimen/dp_40"
         android:layout_height="@dimen/dp_26"
@@ -56,6 +58,7 @@
         app:layout_constraintTop_toTopOf="@+id/ac_tv_systolic" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:text="Normal"
         android:id="@+id/ac_tv_stage"
         android:layout_width="@dimen/dp_100"
         android:layout_height="wrap_content"
@@ -71,6 +74,7 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:text="Dec 14, 15:30, 70 BPM"
         android:id="@+id/ac_tv_date_pulse"
         android:layout_width="@dimen/dp_100"
         android:layout_height="wrap_content"
@@ -87,6 +91,7 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:text="#After medication #Left"
         android:id="@+id/ac_tv_tag"
         android:layout_width="@dimen/dp_100"
         android:layout_height="wrap_content"
