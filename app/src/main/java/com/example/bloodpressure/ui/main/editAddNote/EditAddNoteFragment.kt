@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import com.example.bloodpressure.R
 import com.example.bloodpressure.adapter.EditAddNotesAdapter
 import com.example.bloodpressure.base.BaseFragment
-import com.example.bloodpressure.callBack.OnCLickItemEditNote
+import com.example.bloodpressure.callBack.OnCLickItemEditAddNote
 import com.example.bloodpressure.databinding.FragmentEditAddNoteBinding
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class EditAddNoteFragment : BaseFragment<EditAddNoteViewModel, FragmentEditAddNoteBinding>(),
-    OnCLickItemEditNote {
+    OnCLickItemEditAddNote {
     override val viewModel: EditAddNoteViewModel by viewModels()
     private lateinit var adapter: EditAddNotesAdapter
 
@@ -31,15 +31,12 @@ class EditAddNoteFragment : BaseFragment<EditAddNoteViewModel, FragmentEditAddNo
     override fun setUpData() {
         super.setUpData()
         adapter = EditAddNotesAdapter(this, requireContext())
-        val layoutManager = FlexboxLayoutManager(requireContext()).apply {
-            flexDirection = FlexDirection.ROW
-            justifyContent = JustifyContent.FLEX_START
-        }
-
         binding.apply {
             rvNotes.adapter = adapter
-
-            rvNotes.layoutManager = layoutManager
+            rvNotes.layoutManager = FlexboxLayoutManager(requireContext()).apply {
+                flexDirection = FlexDirection.ROW
+                justifyContent = JustifyContent.FLEX_START
+            }
         }
 
     }
@@ -50,15 +47,13 @@ class EditAddNoteFragment : BaseFragment<EditAddNoteViewModel, FragmentEditAddNo
         val dialog = builder.apply {
             setTitle(getString(R.string.delete_tag))
             setMessage(R.string.delete_song)
-            setNegativeButton(getString(R.string.cancel),
-                object : DialogInterface.OnClickListener {
-                    override fun onClick(p0: DialogInterface?, p1: Int) {
+            setNegativeButton(getString(R.string.cancel), object : DialogInterface.OnClickListener {
+                override fun onClick(p0: DialogInterface?, p1: Int) {
 
-                    }
+                }
 
-                })
-            setPositiveButton(
-                getString(R.string.action_ok),
+            })
+            setPositiveButton(getString(R.string.action_ok),
                 object : DialogInterface.OnClickListener {
                     override fun onClick(p0: DialogInterface?, p1: Int) {
                     }
@@ -69,10 +64,10 @@ class EditAddNoteFragment : BaseFragment<EditAddNoteViewModel, FragmentEditAddNo
         val message = dialog.findViewById<TextView>(android.R.id.message)
         message.typeface = ResourcesCompat.getFont(requireContext(), R.font.assistant_regular)
         val type = ResourcesCompat.getFont(requireContext(), R.font.assistant_bold)
-       // val title = dialog.findViewById<TextView>(androidx.appcompat.R.id.alertTitle)
+        // val title = dialog.findViewById<TextView>(androidx.appcompat.R.id.alertTitle)
         val btn1 = dialog.findViewById<Button>(android.R.id.button1)
         val btn2 = dialog.findViewById<Button>(android.R.id.button2)
-       // title.typeface = type
+        // title.typeface = type
         btn1.typeface = type
         btn2.typeface = type
 

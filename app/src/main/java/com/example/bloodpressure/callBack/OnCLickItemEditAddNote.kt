@@ -1,5 +1,5 @@
 package com.example.bloodpressure.callBack
 
-interface OnCLickItemEditNote {
+interface OnCLickItemEditAddNote {
     fun onClick()
 }

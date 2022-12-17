@@ -26,7 +26,7 @@ class InfoFragment : BaseFragment<InfoViewModel, FragmentInfoBinding>() {
     override fun setUpView() {
         super.setUpView()
         configScreen.setStatusBar(activity=requireActivity(), isDecorFitsSystem = true, color = R.color.transparent)
-        (requireActivity() as MainActivity).visibilityBottomBar(true)
+        getActivitys().visibilityBottomBar(true)
     }
 
 

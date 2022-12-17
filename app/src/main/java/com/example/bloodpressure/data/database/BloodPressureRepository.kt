@@ -1,4 +1,4 @@
-package com.example.bloodpressure.data.database.repository
+package com.example.bloodpressure.data.database
 
 import androidx.lifecycle.LiveData
 import com.example.bloodpressure.data.database.BloodPressureDao

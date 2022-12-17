@@ -1,8 +1,9 @@
-package com.example.bloodpressure.views
+package com.example.bloodpressure.widgets.customview
 
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.bloodpressure.callBack.ListenerHorizontalStage
@@ -27,6 +28,12 @@ class HorizontalStageView(context: Context?, attrs: AttributeSet?) :
             stage.getStage(), stage.getStageRange(), stage.getStageContent(), stage.getColorStage()
         )
         updateView(stage.ordinal)
+        invalidate()
+    }
+
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
+        Log.d("22222", "onDraw: ")
     }
 
     private fun updateView(ordinal: Int) {

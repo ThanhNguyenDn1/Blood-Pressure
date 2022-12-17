@@ -35,7 +35,6 @@ class TrackerFragment : BaseFragment<TrackerViewModel, FragmentTrackerBinding>()
         binding.rvBottom.adapter = adapter
         binding.rvBottom.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-
     }
 
     override fun handlerEvent() {
@@ -56,8 +55,15 @@ class TrackerFragment : BaseFragment<TrackerViewModel, FragmentTrackerBinding>()
         super.observeData()
         viewModel.getData().observe(viewLifecycleOwner) {
             adapter.updateData(it)
+            binding.tcl.updateData(it)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        getActivitys().visibilityBottomBar(true)
+    }
+
 
     override fun onClick(IdByInsertTime: Long) {
         if (IdByInsertTime == adapter.GO_TO_EDIT_RECORD) {

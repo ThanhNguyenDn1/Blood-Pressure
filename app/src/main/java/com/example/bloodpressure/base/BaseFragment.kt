@@ -1,6 +1,5 @@
 package com.example.bloodpressure.base
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.example.bloodpressure.MainActivity
 
 
 abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
@@ -28,6 +28,8 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
         handlerEvent()
         observeData()
     }
+
+    fun getActivitys() = (requireActivity() as MainActivity)
 
     protected abstract fun provideViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB
     protected open fun setUpData() {}

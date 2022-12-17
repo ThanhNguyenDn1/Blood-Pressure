@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.bloodpressure.views.RadiusCardView
+    <com.example.bloodpressure.widgets.customview.RadiusCardView
         android:id="@+id/rcv_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -105,5 +105,5 @@
                     app:layout_constraintStart_toEndOf="@+id/v_line" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.example.bloodpressure.views.RadiusCardView>
+    </com.example.bloodpressure.widgets.customview.RadiusCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

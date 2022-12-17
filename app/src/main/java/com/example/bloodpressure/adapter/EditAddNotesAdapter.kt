@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bloodpressure.R
-import com.example.bloodpressure.callBack.OnCLickItemEditNote
+import com.example.bloodpressure.callBack.OnCLickItemEditAddNote
 import com.example.bloodpressure.databinding.ItemDragChipBinding
 
-class EditAddNotesAdapter(private var callBack: OnCLickItemEditNote, private var context: Context) :
+class EditAddNotesAdapter(private var callBack: OnCLickItemEditAddNote, private var context: Context) :
     RecyclerView.Adapter<EditAddNotesAdapter.EditAddNotesHolder>() {
 
     var items: List<Int> = arrayListOf(

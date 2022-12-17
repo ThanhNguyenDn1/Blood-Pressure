@@ -1,4 +1,4 @@
-package com.example.bloodpressure.views
+package com.example.bloodpressure.widgets.customview
 
 import android.content.Context
 import android.graphics.Canvas

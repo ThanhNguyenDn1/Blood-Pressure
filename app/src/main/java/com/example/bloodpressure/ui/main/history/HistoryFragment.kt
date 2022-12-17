@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bloodpressure.MainActivity
 import com.example.bloodpressure.R
 import com.example.bloodpressure.adapter.HistoryListAdapter
 import com.example.bloodpressure.base.BaseFragment
@@ -34,6 +35,7 @@ class HistoryFragment : BaseFragment<HistoryViewModel, FragmentHistoryBinding>()
             rvHistory.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
+        getActivitys().visibilityBottomBar(false)
     }
 
     override fun handlerEvent() {

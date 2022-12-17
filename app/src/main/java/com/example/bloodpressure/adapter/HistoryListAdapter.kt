@@ -11,6 +11,8 @@ import com.example.bloodpressure.callBack.OnClickItemHistory
 import com.example.bloodpressure.data.model.BloodPressure
 import com.example.bloodpressure.databinding.ItemHistoryBinding
 import com.example.bloodpressure.utils.Stage
+import com.example.bloodpressure.utils.jsonToStrings
+import com.example.bloodpressure.utils.toNotes
 
 class HistoryListAdapter(
     private var isAll: Boolean,
@@ -59,7 +61,7 @@ class HistoryListAdapter(
                 acTvDiastolic.text = diastolic.toString()
                 acTvStage.text = stage
                 acTvDatePulse.text = "$record_time ,  $pulse  ${context.getString(R.string.bpm)}"
-                acTvTag.text = other_text
+                acTvTag.text = other_text.jsonToStrings().toNotes()
                 vLine.setBackgroundColor(
                     ContextCompat.getColor(
                         context, getColor(systolic, diastolic)
@@ -89,4 +91,6 @@ class HistoryListAdapter(
         this.item = items
         notifyDataSetChanged()
     }
+
+
 }

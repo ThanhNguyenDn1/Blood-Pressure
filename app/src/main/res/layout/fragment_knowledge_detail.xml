@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ac_iv_back"
         tools:text="What is Blood Pressure" />
 
-    <com.example.bloodpressure.views.RadiusCardView
+    <com.example.bloodpressure.widgets.customview.RadiusCardView
         android:id="@+id/rcv_top"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -66,7 +66,7 @@
             android:id="@+id/ac_iv_top_rcv"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </com.example.bloodpressure.views.RadiusCardView>
+    </com.example.bloodpressure.widgets.customview.RadiusCardView>
 
     <Space
         android:id="@+id/s_top"
@@ -85,7 +85,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/s_top" />
 
-    <com.example.bloodpressure.views.ScrollTopRecyclerView
+    <com.example.bloodpressure.widgets.customview.ScrollTopRecyclerView
         tools1:listitem="@layout/item_knowledge_detail"
         android:id="@+id/rv_knowledge_detail"
         android:layout_width="match_parent"
@@ -101,7 +101,7 @@
         app:layout_constraintBottom_toTopOf="@+id/banner_layout"
         app:layout_constraintTop_toTopOf="@+id/rcv_top" />
 
-    <com.example.bloodpressure.views.RadiusCardView
+    <com.example.bloodpressure.widgets.customview.RadiusCardView
         android:id="@+id/banner_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

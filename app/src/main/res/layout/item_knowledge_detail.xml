@@ -150,7 +150,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <com.example.bloodpressure.views.RadiusCardView
+    <com.example.bloodpressure.widgets.customview.RadiusCardView
         android:id="@+id/rcv_top"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_10"
@@ -160,7 +160,7 @@
         app:topLeftRadius="@dimen/dp_10"
         app:topRightRadius="@dimen/dp_10" />
 
-    <com.example.bloodpressure.views.RadiusCardView
+    <com.example.bloodpressure.widgets.customview.RadiusCardView
         android:id="@+id/rcv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.example.bloodpressure.views.RadiusCardView>
+    </com.example.bloodpressure.widgets.customview.RadiusCardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_content_1"
@@ -200,7 +200,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.example.bloodpressure.views.RadiusCardView
+        <com.example.bloodpressure.widgets.customview.RadiusCardView
             android:id="@+id/rcv_last_bottom"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_10"
@@ -215,7 +215,7 @@
             android:layout_height="@dimen/dp_10"
             app:layout_constraintTop_toBottomOf="@+id/rcv_last_bottom" />
 
-        <com.example.bloodpressure.views.RadiusCardView
+        <com.example.bloodpressure.widgets.customview.RadiusCardView
             android:id="@+id/rcv_content_1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_10"
@@ -337,7 +337,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.example.bloodpressure.views.RadiusCardView
+        <com.example.bloodpressure.widgets.customview.RadiusCardView
             android:id="@+id/rcv_rv_last_top"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_20"
@@ -352,7 +352,7 @@
             android:layout_height="@dimen/dp_10"
             app:layout_constraintTop_toBottomOf="@+id/rcv_rv_last_top" />
 
-        <com.example.bloodpressure.views.RadiusCardView
+        <com.example.bloodpressure.widgets.customview.RadiusCardView
             android:id="@+id/rcv_rv"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_10"
@@ -393,7 +393,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.example.bloodpressure.views.RadiusCardView
+        <com.example.bloodpressure.widgets.customview.RadiusCardView
             android:id="@+id/rcv_last_content_bottom"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_10"
@@ -402,7 +402,7 @@
             app:bottomRightRadius="@dimen/dp_10"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.bloodpressure.views.RadiusCardView
+        <com.example.bloodpressure.widgets.customview.RadiusCardView
             android:id="@+id/rcv_newline_content"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_10"

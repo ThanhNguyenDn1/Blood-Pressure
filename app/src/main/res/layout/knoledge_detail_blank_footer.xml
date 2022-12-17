@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.example.bloodpressure.views.RadiusCardView
+    <com.example.bloodpressure.widgets.customview.RadiusCardView
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_10"
         android:layout_marginBottom="@dimen/dp_50"
