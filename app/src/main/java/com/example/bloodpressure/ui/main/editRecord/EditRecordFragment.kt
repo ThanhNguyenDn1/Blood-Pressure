@@ -11,6 +11,7 @@ import com.example.bloodpressure.base.BaseFragment
 import com.example.bloodpressure.callBack.*
 import com.example.bloodpressure.databinding.FragmentEditRecordBinding
 import com.example.bloodpressure.utils.Stage
+import com.example.bloodpressure.utils.jsonToStrings
 import com.example.bloodpressure.widgets.dialog.DialogStageTypeQuestion
 import com.example.bloodpressure.widgets.dialog.EditNoteDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +23,8 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
     override val viewModel: EditRecordViewModel by viewModels()
     private lateinit var bottomSheet: EditNoteDialog
     private lateinit var dialogStageTypeQuestion: DialogStageTypeQuestion
+    private var isEditItem: Boolean = false
+    private var idByInsertTime: Long = 0L
 
     override fun provideViewBinding(
         inflater: LayoutInflater, container: ViewGroup?
@@ -36,11 +39,17 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
         }
         dialogStageTypeQuestion = DialogStageTypeQuestion(this)
         bottomSheet = EditNoteDialog(this)
+        idByInsertTime = arguments?.let { EditRecordFragmentArgs.fromBundle(it).idItem }!!
+        isEditItem = idByInsertTime != 0L
+        if (isEditItem) {
+            viewModel.getItemByID(idByInsertTime)
+        }
     }
 
     override fun setUpView() {
         super.setUpView()
         getActivitys().visibilityBottomBar(false)
+        binding.tvDelete.visibility = if (isEditItem) View.VISIBLE else View.GONE
     }
 
     override fun handlerEvent() {
@@ -58,20 +67,46 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
             clNoteAdd.setOnClickListener {
                 bottomSheet.show(childFragmentManager, "bottomsheet")
             }
+
+            tvDelete.setOnClickListener {
+                viewModel.deleteById(idByInsertTime)
+                Navigation.findNavController(it).popBackStack()
+            }
+        }
+    }
+
+    override fun observeData() {
+        super.observeData()
+        if (isEditItem) {
+            viewModel.getItemUpdate().observe(viewLifecycleOwner) {
+                binding.apply {
+                    val datas = arrayListOf(it.systolic, it.diastolic, it.pulse)
+                    rpv.setRecord(datas)
+                    hsv.updateData(datas)
+                    cpv.setParameter(it.record_time.jsonToStrings())
+                    val numberNote = it.other_text.jsonToStrings().size
+                    acTvNote.text =
+                        (if (numberNote == 0) "" else "$numberNote ").plus((getString(R.string.a_note)))
+                }
+                bottomSheet.setNoteSelected(it.other_text.jsonToStrings())
+
+            }
         }
     }
 
     private fun saveNewBloodP(view: View) {
-        viewModel.addNewBloodPressure()
+        if (isEditItem) viewModel.updateBloodPressure()
+        else viewModel.addNewBloodPressure()
+
         Navigation.findNavController(view).popBackStack()
     }
 
-    override fun onRecordPickerChange(systolic: Int, diastolic: Int, pulse: Int) {
-        binding.hsv.updateData(systolic, diastolic, pulse)
-        viewModel.setDataBloodP(systolic, diastolic, pulse)
+    override fun onRecordPickerChange(datas: ArrayList<Int>) {
+        binding.hsv.updateData(datas)
+        viewModel.setDataBloodP(datas)
     }
 
-    override fun onChangeStage(stage: Int, stageRange: Int, stageContent: Int, colorStage: Int) {
+    override fun onHorizontalStageChange(stage: Int, stageRange: Int, stageContent: Int, colorStage: Int) {
         viewModel.setStage(getString(stage))
         binding.apply {
             acTvStage.text = getString(stage)
@@ -87,7 +122,7 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
             .navigate(R.id.action_editRecordFragment_to_knowledgeDetailFragment)
     }
 
-    override fun onCalendarPickeChange(dates: Array<String>) {
+    override fun onCalendarPickeChange(dates: ArrayList<String>) {
         viewModel.setTimeRecord(dates)
     }
 
@@ -99,6 +134,9 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
 
     override fun saveItemNote(itemNoteSelected: ArrayList<String>) {
         viewModel.setNote(itemNoteSelected)
+        val numberNote = itemNoteSelected.size
+        binding.acTvNote.text =
+            (if (numberNote == 0) "" else "$numberNote ").plus((getString(R.string.a_note)))
     }
 
 }

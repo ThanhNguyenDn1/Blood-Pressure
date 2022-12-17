@@ -27,3 +27,12 @@ fun ArrayList<String>.toNotes(): String {
     }
     return notes
 }
+
+fun String.formatToDate():String{
+    val list=this.jsonToStrings()
+    return "${list[1]}, ${list[2]}: ${list[3]}, "
+}
+
+fun Int.formatToBPM():String{
+    return "$this BPM"
+}

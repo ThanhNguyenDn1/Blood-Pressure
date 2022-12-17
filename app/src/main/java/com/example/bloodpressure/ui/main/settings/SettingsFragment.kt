@@ -13,4 +13,12 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentSettingsBinding.inflate(LayoutInflater.from(inflater.context), container, false)
 
+    override fun handlerEvent() {
+        super.handlerEvent()
+        binding.apply {
+            clMeLang.setOnClickListener { }
+            clExPort.setOnClickListener { }
+        }
+    }
+
 }

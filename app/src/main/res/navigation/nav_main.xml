@@ -5,7 +5,6 @@
     android:id="@+id/nav_main"
     app:startDestination="@id/actionTracker">
 
-
     <fragment
         android:id="@+id/actionInfo"
         android:name="com.example.bloodpressure.ui.main.info.InfoFragment"
@@ -65,6 +64,10 @@
         <action
             android:id="@+id/action_editRecordFragment_to_editAddNoteFragment"
             app:destination="@id/editAddNoteFragment" />
+        <argument
+            android:defaultValue="0L"
+            android:name="idItem"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/knowledgeDetailFragment"
@@ -73,7 +76,7 @@
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.bloodpressure.ui.main.history.HistoryFragment"
-        android:label="HistoryFragment" >
+        android:label="HistoryFragment">
         <action
             android:id="@+id/action_historyFragment_to_editRecordFragment"
             app:destination="@id/editRecordFragment" />

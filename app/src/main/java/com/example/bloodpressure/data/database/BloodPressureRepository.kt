@@ -1,7 +1,6 @@
 package com.example.bloodpressure.data.database
 
 import androidx.lifecycle.LiveData
-import com.example.bloodpressure.data.database.BloodPressureDao
 import com.example.bloodpressure.data.model.BloodPressure
 import javax.inject.Inject
 
@@ -19,4 +18,11 @@ class BloodPressureRepository @Inject constructor(private val dao: BloodPressure
     suspend fun deleteBloodPressure(bloodPressure: BloodPressure) {
         dao.deleteBloodPressure(bloodPressure)
     }
+
+    suspend fun deleteById(idByInsertTime: Long) {
+        dao.deleteById(idByInsertTime)
+    }
+
+    suspend fun getItemById(idByInsertTime: Long) = dao.getItemById(idByInsertTime)
+
 }

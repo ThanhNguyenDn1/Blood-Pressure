@@ -11,10 +11,12 @@ import com.example.bloodpressure.callBack.OnCLickItemEditNoteDialog
 import com.example.bloodpressure.databinding.ItemChipBinding
 
 class EditNotesDialogAdapter(
-    private var callBack: OnCLickItemEditNoteDialog, private var context: Context
+    private var callBack: OnCLickItemEditNoteDialog,
+    private var context: Context,
+    notes: ArrayList<String>
 ) : RecyclerView.Adapter<EditNotesDialogAdapter.EditNotesDialogHolder>() {
 
-    private var itemNoteSelecteds = ArrayList<String>()
+    private var itemNoteSelecteds =notes
     var items: List<Int> = arrayListOf(
         R.string.bq_tag_left,
         R.string.bq_tag_right,
@@ -91,5 +93,12 @@ class EditNotesDialogAdapter(
         notifyDataSetChanged()
     }
 
-    fun getItemNoteSelected()=itemNoteSelecteds
+    fun getItemNoteSelected() = itemNoteSelecteds
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setItemNoteSelected(notes: ArrayList<String>) {
+        this.itemNoteSelecteds = notes
+        notifyDataSetChanged()
+    }
+
 }

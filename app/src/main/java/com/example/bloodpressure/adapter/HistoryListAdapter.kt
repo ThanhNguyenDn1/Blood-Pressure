@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bloodpressure.R
 import com.example.bloodpressure.callBack.OnClickItemHistory
 import com.example.bloodpressure.data.model.BloodPressure
 import com.example.bloodpressure.databinding.ItemHistoryBinding
-import com.example.bloodpressure.utils.Stage
-import com.example.bloodpressure.utils.jsonToStrings
-import com.example.bloodpressure.utils.toNotes
+import com.example.bloodpressure.utils.*
 
 class HistoryListAdapter(
     private var isAll: Boolean,
@@ -60,7 +57,7 @@ class HistoryListAdapter(
                 acTvSystolic.text = systolic.toString()
                 acTvDiastolic.text = diastolic.toString()
                 acTvStage.text = stage
-                acTvDatePulse.text = "$record_time ,  $pulse  ${context.getString(R.string.bpm)}"
+                acTvDatePulse.text = record_time.formatToDate().plus(pulse.formatToBPM())
                 acTvTag.text = other_text.jsonToStrings().toNotes()
                 vLine.setBackgroundColor(
                     ContextCompat.getColor(

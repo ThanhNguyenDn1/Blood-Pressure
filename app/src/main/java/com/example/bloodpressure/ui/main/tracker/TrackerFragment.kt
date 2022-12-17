@@ -13,7 +13,6 @@ import com.example.bloodpressure.callBack.OnClickItemHistory
 import com.example.bloodpressure.databinding.FragmentTrackerBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class TrackerFragment : BaseFragment<TrackerViewModel, FragmentTrackerBinding>(),
     OnClickItemHistory {
@@ -27,7 +26,7 @@ class TrackerFragment : BaseFragment<TrackerViewModel, FragmentTrackerBinding>()
 
     override fun setUpData() {
         super.setUpData()
-        adapter = HistoryListAdapter(false,requireContext(), ArrayList(), this)
+        adapter = HistoryListAdapter(false, requireContext(), ArrayList(), this)
     }
 
     override fun setUpView() {
@@ -39,11 +38,17 @@ class TrackerFragment : BaseFragment<TrackerViewModel, FragmentTrackerBinding>()
 
     override fun handlerEvent() {
         super.handlerEvent()
-        binding.clEmptyCover.clEmptyCover.setOnClickListener {
-            goToEditRecord(it)
-        }
-        binding.clTrackerAdd.setOnClickListener {
-            goToEditRecord(it)
+        binding.apply {
+            clEmptyCover.clEmptyCover.setOnClickListener {
+                goToEditRecord(it)
+            }
+            binding.clTrackerAdd.setOnClickListener {
+                goToEditRecord(it)
+            }
+            acTvHistory.setOnClickListener {
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_actionTracker_to_historyFragment)
+            }
         }
     }
 
@@ -54,8 +59,19 @@ class TrackerFragment : BaseFragment<TrackerViewModel, FragmentTrackerBinding>()
     override fun observeData() {
         super.observeData()
         viewModel.getData().observe(viewLifecycleOwner) {
-            adapter.updateData(it)
-            binding.tcl.updateData(it)
+            if (it.size == 0) {
+                binding.apply {
+                    clEmptyCover.root.visibility = View.VISIBLE
+                    clTrackerAdd.visibility = View.GONE
+                }
+            } else {
+                binding.apply {
+                    clEmptyCover.root.visibility = View.GONE
+                    clTrackerAdd.visibility = View.VISIBLE
+                }
+                adapter.updateData(it)
+                binding.tcl.updateData(it)
+            }
         }
     }
 
@@ -64,14 +80,14 @@ class TrackerFragment : BaseFragment<TrackerViewModel, FragmentTrackerBinding>()
         getActivitys().visibilityBottomBar(true)
     }
 
-
-    override fun onClick(IdByInsertTime: Long) {
-        if (IdByInsertTime == adapter.GO_TO_EDIT_RECORD) {
+    override fun onClick(idByInsertTime: Long) {
+        if (idByInsertTime == adapter.GO_TO_EDIT_RECORD) {
             Navigation.findNavController(requireActivity(), R.id.flTabContainer)
                 .navigate(R.id.action_actionTracker_to_historyFragment)
         } else {
-            Navigation.findNavController(requireActivity(), R.id.flTabContainer)
-                .navigate(R.id.action_actionTracker_to_editRecordFragment)
+            val action =
+                TrackerFragmentDirections.actionActionTrackerToEditRecordFragment(idByInsertTime)
+            Navigation.findNavController(requireActivity(), R.id.flTabContainer).navigate(action)
         }
     }
 

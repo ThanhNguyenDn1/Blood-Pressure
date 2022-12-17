@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/page_bg">
+    <item>
+        <shape>
+            <solid android:color="@color/home_record_bg" />
+            <corners
+                android:bottomLeftRadius="17dp"
+                android:bottomRightRadius="17dp" />
+        </shape>
+    </item>
+</ripple>

@@ -1,6 +1,7 @@
 package com.example.bloodpressure.ui.main.editRecord
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.bloodpressure.base.BaseViewModel
 import com.example.bloodpressure.data.database.BloodPressureRepository
@@ -16,6 +17,7 @@ class EditRecordViewModel @Inject constructor(val repository: BloodPressureRepos
     BaseViewModel() {
 
     private var data: LiveData<List<BloodPressure>>
+    private var itemUpdate: MutableLiveData<BloodPressure>
     private var stage = "Normal"
     private var systolic = 100
     private var diastolic = 75
@@ -26,18 +28,19 @@ class EditRecordViewModel @Inject constructor(val repository: BloodPressureRepos
 
     init {
         data = repository.readAllData
+        itemUpdate = MutableLiveData()
     }
 
     fun addNewBloodPressure() {
-        val bloodPressure = getBloodPressure()
+        val bloodPressure = getBloodPressure(System.currentTimeMillis())
         viewModelScope.launch(Dispatchers.IO) {
             repository.addBloodPressure(bloodPressure)
         }
     }
 
-    fun updateBloodPressure(bloodPressure: BloodPressure) {
+    fun updateBloodPressure() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addBloodPressure(bloodPressure)
+            repository.updateItemBloodPressure(getBloodPressure(itemUpdate.value!!.IdByInsertTime))
         }
     }
 
@@ -47,9 +50,21 @@ class EditRecordViewModel @Inject constructor(val repository: BloodPressureRepos
         }
     }
 
-    fun getBloodPressure(): BloodPressure {
+    fun deleteById(idByInsertTime: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteById(idByInsertTime)
+        }
+    }
+
+    fun getItemByID(idByInsertTime: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            itemUpdate.postValue(repository.getItemById(idByInsertTime))
+        }
+    }
+
+    fun getBloodPressure(idByInsertTime: Long): BloodPressure {
         return BloodPressure(
-            IdByInsertTime = System.currentTimeMillis(),
+            IdByInsertTime = idByInsertTime,
             stage = stage,
             systolic = systolic,
             diastolic = diastolic,
@@ -60,21 +75,23 @@ class EditRecordViewModel @Inject constructor(val repository: BloodPressureRepos
         )
     }
 
-    fun setDataBloodP(systolic: Int, diastolic: Int, pulse: Int) {
-        this.systolic = systolic
-        this.diastolic = diastolic
-        this.pulse = pulse
+    fun setDataBloodP(datas:ArrayList<Int>) {
+        this.systolic = datas[0]
+        this.diastolic = datas[1]
+        this.pulse = datas[2]
     }
 
     fun setStage(string: String) {
         this.stage = string
     }
 
-    fun setTimeRecord(dates: Array<String>) {
-        record_time = dates[1] + ", " + dates[2] + ":" + dates[3]
+    fun setTimeRecord(dates: ArrayList<String>) {
+        record_time = dates.stringsToJson()
     }
 
     fun setNote(itemNoteSelected: ArrayList<String>) {
         this.other_text = itemNoteSelected.stringsToJson()
     }
+
+    fun getItemUpdate() = itemUpdate
 }

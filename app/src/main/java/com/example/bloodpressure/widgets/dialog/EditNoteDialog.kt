@@ -16,6 +16,7 @@ class EditNoteDialog(private var callBack: OnCLickItemEditNoteDialog) :
     BottomSheetDialogFragment() {
     private lateinit var binding: DialogEditNoteBinding
     private lateinit var adapter: EditNotesDialogAdapter
+    private var notes = ArrayList<String>()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState).apply {
@@ -27,7 +28,7 @@ class EditNoteDialog(private var callBack: OnCLickItemEditNoteDialog) :
                 val bottomSheet =
                     findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout
                 bottomSheet.setBackgroundResource(android.R.color.transparent)
-                isCancelable=false
+                isCancelable = false
                 setCanceledOnTouchOutside(true)
             }
         }
@@ -36,7 +37,7 @@ class EditNoteDialog(private var callBack: OnCLickItemEditNoteDialog) :
 
     private fun handlerEvent() {
         binding.apply {
-            ivClose.setOnClickListener{
+            ivClose.setOnClickListener {
                 this@EditNoteDialog.dismiss()
             }
             acbSave.setOnClickListener {
@@ -47,7 +48,7 @@ class EditNoteDialog(private var callBack: OnCLickItemEditNoteDialog) :
     }
 
     private fun setupData() {
-        adapter = EditNotesDialogAdapter(callBack, requireContext())
+        adapter = EditNotesDialogAdapter(callBack, requireContext(), notes)
         binding.rvNotes.apply {
             adapter = this@EditNoteDialog.adapter
             layoutManager = FlexboxLayoutManager(requireContext()).apply {
@@ -55,6 +56,11 @@ class EditNoteDialog(private var callBack: OnCLickItemEditNoteDialog) :
                 justifyContent = JustifyContent.CENTER
             }
         }
+    }
+
+    fun setNoteSelected(notes: ArrayList<String>) {
+        this.notes = notes
+        callBack.saveItemNote(this.notes)
     }
 
 }

@@ -1,137 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl_click_bg"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/translucence_clickable_view"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="15dp"
+    android:paddingTop="15dp"
+    android:paddingEnd="15dp"
+    android:paddingBottom="15dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_account"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/img_me" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_account_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/assistant_extra_bold"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:text="@string/sync_restore"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:autoSizeMaxTextSize="22sp"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_account"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_goneMarginStart="0dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_account_sub_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="20dp"
+        android:alpha="0.8"
+        android:drawablePadding="4dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/assistant_regular"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:text="@string/sign_in_back_up"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:autoSizeMaxTextSize="14sp"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_account_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_account_name" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_click_bg"
+        android:id="@+id/cl_sync_click"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="18dp"
         android:background="@drawable/translucence_clickable_view"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingStart="15dp"
-        android:paddingTop="15dp"
-        android:paddingEnd="15dp"
-        android:paddingBottom="15dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/iv_account"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:src="@drawable/img_me" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_account_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/assistant_extra_bold"
-            android:gravity="center_vertical"
-            android:maxLines="2"
-            android:text="@string/sync_restore"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:autoSizeMaxTextSize="22sp"
-            app:autoSizeMinTextSize="10sp"
-            app:autoSizeStepGranularity="1sp"
-            app:autoSizeTextType="uniform"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_account"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_goneMarginStart="0dp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_account_sub_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="20dp"
-            android:alpha="0.8"
-            android:drawablePadding="4dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/assistant_regular"
-            android:gravity="center_vertical"
-            android:maxLines="2"
-            android:text="@string/sign_in_back_up"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            app:autoSizeMaxTextSize="14sp"
-            app:autoSizeMinTextSize="10sp"
-            app:autoSizeStepGranularity="1sp"
-            app:autoSizeTextType="uniform"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_account_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_account_sub_title">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_sync_click"
+            android:id="@+id/cl_sync"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/translucence_clickable_view"
-            app:layout_constraintTop_toBottomOf="@+id/tv_account_sub_title">
+            android:layout_height="match_parent"
+            android:background="@drawable/buttons_ripple_sync">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_sync"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/buttons_ripple_sync">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ac_iv_sync"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="9dp"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/icon_login_backup"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ac_tv_sync"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ac_iv_sync"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginEnd="4dp"
-                    android:src="@drawable/icon_login_backup"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/ac_tv_sync"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/ac_tv_sync"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="9dp"
-                    android:layout_marginBottom="6dp"
-                    android:fontFamily="@font/assistant_extra_bold"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:text="@string/sync"
-                    android:textColor="@color/white"
-                    android:textSize="23sp"
-                    app:autoSizeMaxTextSize="23sp"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeStepGranularity="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constrainedWidth="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toEndOf="@+id/ac_iv_sync"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_goneMarginStart="9dp" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ac_tv_sync"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="9dp"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/assistant_extra_bold"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@string/sync"
+                android:textColor="@color/white"
+                android:textSize="23sp"
+                app:autoSizeMaxTextSize="23sp"
+                app:autoSizeMinTextSize="10sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/ac_iv_sync"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_goneMarginStart="9dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</merge>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -92,6 +92,7 @@ class TrackerChartLayout : ConstraintLayout {
         val barData = BarData(barDataSet)
         binding.bcTracker.apply {
             data = barData
+            notifyDataSetChanged()
             invalidate()
         }
     }

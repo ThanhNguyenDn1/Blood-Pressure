@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.bloodpressure.MainActivity
 import com.example.bloodpressure.R
 import com.example.bloodpressure.adapter.HistoryListAdapter
 import com.example.bloodpressure.base.BaseFragment
@@ -52,8 +51,10 @@ class HistoryFragment : BaseFragment<HistoryViewModel, FragmentHistoryBinding>()
         }
     }
 
-    override fun onClick(IdByInsertTime: Long) {
+    override fun onClick(idByInsertTime: Long) {
+        val action =
+            HistoryFragmentDirections.actionHistoryFragmentToEditRecordFragment(idByInsertTime)
         Navigation.findNavController(requireActivity(), R.id.flTabContainer)
-            .navigate(R.id.action_historyFragment_to_editRecordFragment)
+            .navigate(action)
     }
 }

@@ -13,13 +13,286 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <include
+                android:id="@+id/ilAcount"
+                layout="@layout/layout_setting_account_row" />
 
-        </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clSetting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/bg_history_item_ripple"
+                app:layout_constraintTop_toBottomOf="@id/ilAcount">
+
+                <TextView
+                    android:id="@+id/tvTitleSetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:alpha="0.8"
+                    android:fontFamily="@font/assistant_regular"
+                    android:text="@string/main_setting"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_18"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clMeLang"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_65"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/bg_ripple_setting"
+                    android:paddingHorizontal="@dimen/dp_16"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitleSetting">
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imMeLang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@null"
+                        android:src="@drawable/icon_me_lang"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTitleMeLang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_20"
+                        android:fontFamily="@font/assistant_bold"
+                        android:text="@string/language_title"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_20"
+                        app:layout_constraintBottom_toBottomOf="@id/imMeLang"
+                        app:layout_constraintLeft_toRightOf="@id/imMeLang"
+                        app:layout_constraintTop_toTopOf="@id/imMeLang" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clExPort"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_65"
+                    android:background="@drawable/bg_ripple_setting_radius_bottom"
+                    android:paddingHorizontal="@dimen/dp_16"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/clMeLang">
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imExPort"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@null"
+                        android:src="@drawable/icon_me_file"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTitleExPort"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_20"
+                        android:fontFamily="@font/assistant_bold"
+                        android:text="@string/export_your_data"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_20"
+                        app:layout_constraintBottom_toBottomOf="@id/imExPort"
+                        app:layout_constraintLeft_toRightOf="@id/imExPort"
+                        app:layout_constraintTop_toTopOf="@id/imExPort" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/bg_history_item_ripple"
+                app:layout_constraintTop_toBottomOf="@id/clSetting">
+
+                <TextView
+                    android:id="@+id/tvTitleMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:alpha="0.8"
+                    android:fontFamily="@font/assistant_regular"
+                    android:text="@string/more"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_18"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clRate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_65"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/bg_ripple_setting"
+                    android:paddingHorizontal="@dimen/dp_16"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitleMore">
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@null"
+                        android:src="@drawable/icon_me_rate"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTitleRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_20"
+                        android:fontFamily="@font/assistant_bold"
+                        android:text="@string/button_rate_on_google"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_20"
+                        app:layout_constraintBottom_toBottomOf="@id/imRate"
+                        app:layout_constraintLeft_toRightOf="@id/imRate"
+                        app:layout_constraintTop_toTopOf="@id/imRate" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clShare"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_65"
+                    android:background="@drawable/bg_ripple_setting"
+                    android:paddingHorizontal="@dimen/dp_16"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/clRate">
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imShare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@null"
+                        android:src="@drawable/icon_me_share"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTitleShare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_20"
+                        android:fontFamily="@font/assistant_bold"
+                        android:text="@string/export_your_data"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_20"
+                        app:layout_constraintBottom_toBottomOf="@id/imShare"
+                        app:layout_constraintLeft_toRightOf="@id/imShare"
+                        app:layout_constraintTop_toTopOf="@id/imShare" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clLeave"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_65"
+                    android:background="@drawable/bg_ripple_setting"
+                    android:paddingHorizontal="@dimen/dp_16"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/clShare">
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imLeave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@null"
+                        android:src="@drawable/icon_me_feedback"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTitleLeave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_20"
+                        android:fontFamily="@font/assistant_bold"
+                        android:text="@string/leave_feedback"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_20"
+                        app:layout_constraintBottom_toBottomOf="@id/imLeave"
+                        app:layout_constraintLeft_toRightOf="@id/imLeave"
+                        app:layout_constraintTop_toTopOf="@id/imLeave" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clPrivacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_65"
+                    android:background="@drawable/bg_ripple_setting_radius_bottom"
+                    android:paddingHorizontal="@dimen/dp_16"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/clLeave">
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imPrivacy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@null"
+                        android:src="@drawable/icon_me_privacy"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTitlePrivacy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_20"
+                        android:fontFamily="@font/assistant_bold"
+                        android:text="@string/privacy_policy"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_20"
+                        app:layout_constraintBottom_toBottomOf="@id/imPrivacy"
+                        app:layout_constraintLeft_toRightOf="@id/imPrivacy"
+                        app:layout_constraintTop_toTopOf="@id/imPrivacy" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_60"
+                android:layout_marginTop="@dimen/dp_10"
+                android:alpha="0.8"
+                android:fontFamily="@font/assistant_regular"
+                android:gravity="center"
+                android:text="@string/debug_version"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/clMore" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

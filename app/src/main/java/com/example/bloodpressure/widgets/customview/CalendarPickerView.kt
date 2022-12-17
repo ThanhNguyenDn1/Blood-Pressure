@@ -18,15 +18,11 @@ import com.shawnlin.numberpicker.NumberPicker.OnValueChangeListener
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 class CalendarPickerView(context: Context?, attrs: AttributeSet?) : LinearLayout(context, attrs) {
     private var binding: LayoutCalendarPickerBinding
     private lateinit var callBack: ListenerCalendarPicker
-    private var dates = arrayOf("", "", "", "")
-    private var years = getYear()
+    private var dates = arrayListOf("", "", "", "")
     private var monthDays = geMonthDay()
-    private var hours = getHours()
-    private var minutes = getMinute()
 
     init {
         binding = LayoutCalendarPickerBinding.inflate(LayoutInflater.from(context), this, false)
@@ -37,7 +33,6 @@ class CalendarPickerView(context: Context?, attrs: AttributeSet?) : LinearLayout
 
     override fun dispatchDraw(canvas: Canvas?) {
         super.dispatchDraw(canvas)
-        Log.d("22222", "view")
         callBack.onCalendarPickeChange(dates)
     }
 
@@ -52,12 +47,12 @@ class CalendarPickerView(context: Context?, attrs: AttributeSet?) : LinearLayout
                 ResourcesCompat.getFont(context, R.font.assistant_extra_bold), Typeface.BOLD
             )
 
-            displayedValues = years
-            val s = years.size
-            maxValue = s
-            minValue = 1
-            value = s
-            dates.set(0, years[value - 1])
+
+            val year = Calendar.getInstance().get(Calendar.YEAR)
+            maxValue = year
+            minValue = year - 6
+            value = year
+            dates.set(0, year.toString())
         }
         binding.npvMonthDay.apply {
             setSelectedTypeface(
@@ -86,13 +81,13 @@ class CalendarPickerView(context: Context?, attrs: AttributeSet?) : LinearLayout
             typeface = Typeface.create(
                 ResourcesCompat.getFont(context, R.font.assistant_extra_bold), Typeface.BOLD
             )
-            displayedValues = hours
-            val s = hours.size
-            maxValue = s
-            minValue = 1
+
+
+            maxValue = 59
+            minValue = 0
             val c = Calendar.getInstance()
-            value = c.get(Calendar.HOUR_OF_DAY) + 1
-            dates.set(2, hours[value - 1])
+            value = c.get(Calendar.HOUR_OF_DAY)
+            dates.set(2, value.toString())
         }
         binding.npvMinute.apply {
             setSelectedTypeface(
@@ -103,13 +98,12 @@ class CalendarPickerView(context: Context?, attrs: AttributeSet?) : LinearLayout
             typeface = Typeface.create(
                 ResourcesCompat.getFont(context, R.font.assistant_extra_bold), Typeface.BOLD
             )
-            displayedValues = minutes
-            val s = minutes.size
-            maxValue = s
-            minValue = 1
+
+            maxValue = 59
+            minValue = 0
             val c = Calendar.getInstance()
-            value = c.get(Calendar.MINUTE) + 1
-            dates.set(3, minutes[value - 1])
+            value = c.get(Calendar.MINUTE)
+            dates.set(3, value.toString())
         }
 
     }
@@ -118,7 +112,7 @@ class CalendarPickerView(context: Context?, attrs: AttributeSet?) : LinearLayout
         binding.npvYear.apply {
             setOnValueChangedListener(object : OnValueChangeListener {
                 override fun onValueChange(picker: NumberPicker?, oldVal: Int, newVal: Int) {
-                    dates.set(0, years[newVal - 1])
+                    dates.set(0, newVal.toString())
                 }
             })
             setOnScrollListener(object : OnScrollListener {
@@ -146,7 +140,7 @@ class CalendarPickerView(context: Context?, attrs: AttributeSet?) : LinearLayout
         binding.npvTime.apply {
             setOnValueChangedListener(object : OnValueChangeListener {
                 override fun onValueChange(picker: NumberPicker?, oldVal: Int, newVal: Int) {
-                    dates.set(2, hours[newVal - 1])
+                    dates.set(2, newVal.toString())
                 }
             })
             setOnScrollListener(object : OnScrollListener {
@@ -160,7 +154,7 @@ class CalendarPickerView(context: Context?, attrs: AttributeSet?) : LinearLayout
         binding.npvMinute.apply {
             setOnValueChangedListener(object : OnValueChangeListener {
                 override fun onValueChange(picker: NumberPicker?, oldVal: Int, newVal: Int) {
-                    dates.set(3, minutes[newVal - 1])
+                    dates.set(3, newVal.toString())
                 }
             })
             setOnScrollListener(object : OnScrollListener {
@@ -171,20 +165,6 @@ class CalendarPickerView(context: Context?, attrs: AttributeSet?) : LinearLayout
                 }
             })
         }
-    }
-
-    private fun getHours(): Array<String> {
-        val item = Array(25) {
-            String.format("%02d", it)
-        }
-        return item
-    }
-
-    private fun getMinute(): Array<String> {
-        val item = Array(61) {
-            String.format("%02d", it)
-        }
-        return item
     }
 
     fun geMonthDay(): Array<String> {
@@ -203,12 +183,15 @@ class CalendarPickerView(context: Context?, attrs: AttributeSet?) : LinearLayout
         return monthDay.toTypedArray()
     }
 
-    fun getYear(): Array<String> {
-        val minYear = Calendar.getInstance().get(Calendar.YEAR) - 6
-        val data = Array(7) { i ->
-            (minYear + i).toString()
+    fun setParameter(dates: ArrayList<String>) {
+        this.dates = dates
+        binding.apply {
+            npvMinute.value = dates[3].toInt()
+            npvTime.value = dates[2].toInt()
+            npvMonthDay.value = monthDays.indexOf(dates[1]) + 1
+            npvYear.value = dates[0].toInt()
         }
-        return data
+        callBack.onCalendarPickeChange(dates)
     }
 
     fun addCallBack(callBack: ListenerCalendarPicker) {

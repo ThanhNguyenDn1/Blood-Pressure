@@ -301,6 +301,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
+                android:paddingBottom="@dimen/dp_80"
                 android:id="@+id/rv_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -359,7 +360,6 @@
         layout="@layout/empty_cover"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ac_tv_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,9 +22,9 @@ class HorizontalStageView(context: Context?, attrs: AttributeSet?) :
         stage = Stage.STAGE_NORMAL
     }
 
-    fun updateData(systolic: Int = 100, diastolic: Int = 75, pulse: Int = 70) {
-        stage = stage.getStatusHealth(systolic, diastolic)
-        callBack.onChangeStage(
+    fun updateData(datas:ArrayList<Int>) {
+        stage = stage.getStatusHealth(datas[0], datas[1])
+        callBack.onHorizontalStageChange(
             stage.getStage(), stage.getStageRange(), stage.getStageContent(), stage.getColorStage()
         )
         updateView(stage.ordinal)
