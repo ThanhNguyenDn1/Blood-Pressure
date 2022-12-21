@@ -26,8 +26,14 @@ class SplashFragment : BaseFragment<SplashViewModel, FragmentSplashBinding>() {
         val coroutine = CoroutineScope(Dispatchers.Main)
         coroutine.launch {
             delay(2000)
-            Navigation.findNavController(requireActivity(), R.id.flTabContainer)
-                .navigate(R.id.action_splashFragment_to_guideLanguageFragment)
+            if (viewModel.isOpenFirt()) {
+                viewModel.setOpenAppFirt()
+                Navigation.findNavController(requireActivity(), R.id.flTabContainer)
+                    .navigate(R.id.action_splashFragment_to_introFragment)
+            } else {
+                Navigation.findNavController(requireActivity(), R.id.flTabContainer)
+                    .navigate(R.id.action_splashFragment_to_actionInfo)
+            }
         }
     }
 

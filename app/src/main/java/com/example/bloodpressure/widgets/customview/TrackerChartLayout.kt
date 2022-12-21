@@ -54,6 +54,7 @@ class TrackerChartLayout : ConstraintLayout {
             setTouchEnabled(false);
             setDoubleTapToZoomEnabled(false);
             setExtraOffsets(20f, 0f, 0f, 30f);
+            setDrawBorders(false)
             xAxis = getXAxis()
             yAxis = axisLeft
         }
@@ -68,6 +69,7 @@ class TrackerChartLayout : ConstraintLayout {
             setXOffset(30f);
             setCenterAxisLabels(true);
             setLabelCount(7)
+            textColor=Color.WHITE
         }
 
 
@@ -78,6 +80,7 @@ class TrackerChartLayout : ConstraintLayout {
            // valueFormatter = custom
             spaceTop = 15f
             axisMinimum = 20f
+            textColor=Color.WHITE
         }
     }
 

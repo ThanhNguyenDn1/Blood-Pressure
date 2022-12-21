@@ -23,13 +23,13 @@
             android:layout_height="@dimen/dp_100">
 
             <androidx.appcompat.widget.AppCompatImageView
-                app:layout_constraintTop_toTopOf="parent"
                 android:id="@+id/ac_iv_knowledge"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_100"
                 android:adjustViewBounds="true"
                 android:scaleType="fitEnd"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/ac_tv_knowledge"
@@ -41,7 +41,7 @@
                 android:layout_marginBottom="@dimen/dp_15"
                 android:fontFamily="@font/assistant_bold"
                 android:lineSpacingMultiplier="0.8"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/sp_22"
                 app:autoSizeMaxTextSize="@dimen/sp_22"
                 app:autoSizeMinTextSize="@dimen/sp_10"

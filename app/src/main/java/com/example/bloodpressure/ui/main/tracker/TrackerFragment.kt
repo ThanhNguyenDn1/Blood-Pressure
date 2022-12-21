@@ -23,7 +23,6 @@ class TrackerFragment : BaseFragment<TrackerViewModel, FragmentTrackerBinding>()
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentTrackerBinding.inflate(LayoutInflater.from(inflater.context), container, false)
 
-
     override fun setUpData() {
         super.setUpData()
         adapter = HistoryListAdapter(false, requireContext(), ArrayList(), this)
@@ -49,6 +48,11 @@ class TrackerFragment : BaseFragment<TrackerViewModel, FragmentTrackerBinding>()
                 Navigation.findNavController(it)
                     .navigate(R.id.action_actionTracker_to_historyFragment)
             }
+            acIvLeft.setOnClickListener {
+
+            }
+            acIvRight.setOnClickListener { }
+
         }
     }
 
@@ -70,7 +74,7 @@ class TrackerFragment : BaseFragment<TrackerViewModel, FragmentTrackerBinding>()
                     clTrackerAdd.visibility = View.VISIBLE
                 }
                 adapter.updateData(it)
-                binding.tcl.updateData(it)
+                //binding.tcl.updateData(it)
             }
         }
     }
