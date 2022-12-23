@@ -12,6 +12,7 @@ import com.example.bloodpressure.R
 import com.example.bloodpressure.adapter.EditAddNotesAdapter
 import com.example.bloodpressure.base.BaseFragment
 import com.example.bloodpressure.callBack.OnCLickItemEditAddNote
+import com.example.bloodpressure.data.model.Note
 import com.example.bloodpressure.databinding.FragmentEditAddNoteBinding
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -30,7 +31,13 @@ class EditAddNoteFragment : BaseFragment<EditAddNoteViewModel, FragmentEditAddNo
 
     override fun setUpData() {
         super.setUpData()
-        adapter = EditAddNotesAdapter(this, requireContext())
+        saveItemDefault()
+        setupList()
+
+    }
+
+    private fun setupList() {
+        adapter = EditAddNotesAdapter(this, requireContext(), arrayListOf())
         binding.apply {
             rvNotes.adapter = adapter
             rvNotes.layoutManager = FlexboxLayoutManager(requireContext()).apply {
@@ -38,7 +45,23 @@ class EditAddNoteFragment : BaseFragment<EditAddNoteViewModel, FragmentEditAddNo
                 justifyContent = JustifyContent.FLEX_START
             }
         }
+    }
 
+    override fun observeData() {
+        super.observeData()
+        viewModel.getItemsEdited().observe(viewLifecycleOwner) {
+            adapter.updateItems(it)
+        }
+    }
+
+    private fun saveItemDefault() {
+        if (!viewModel.isSaveItemDefault()) {
+            val item = viewModel.getItemsDefault()
+            for (i in 0..item.size - 1) {
+                viewModel.saveListDefault(Note(getString(item[i])))
+            }
+            viewModel.savedItemsDefault()
+        }
     }
 
     override fun onClick() {
@@ -53,7 +76,8 @@ class EditAddNoteFragment : BaseFragment<EditAddNoteViewModel, FragmentEditAddNo
                 }
 
             })
-            setPositiveButton(getString(R.string.action_ok),
+            setPositiveButton(
+                getString(R.string.action_ok),
                 object : DialogInterface.OnClickListener {
                     override fun onClick(p0: DialogInterface?, p1: Int) {
                     }

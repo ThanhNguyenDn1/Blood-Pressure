@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.bloodpressure.base.BaseViewModel
 import com.example.bloodpressure.data.database.BloodPressureRepository
 import com.example.bloodpressure.data.model.BloodPressure
-import com.example.bloodpressure.utils.stringsToJson
+import com.example.bloodpressure.utils.listStringToJson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -86,11 +86,11 @@ class EditRecordViewModel @Inject constructor(val repository: BloodPressureRepos
     }
 
     fun setTimeRecord(dates: ArrayList<String>) {
-        record_time = dates.stringsToJson()
+        record_time = dates.listStringToJson()
     }
 
     fun setNote(itemNoteSelected: ArrayList<String>) {
-        this.other_text = itemNoteSelected.stringsToJson()
+        this.other_text = itemNoteSelected.listStringToJson()
     }
 
     fun getItemUpdate() = itemUpdate

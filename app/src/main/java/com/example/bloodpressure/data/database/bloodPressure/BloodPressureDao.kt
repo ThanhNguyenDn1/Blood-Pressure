@@ -19,9 +19,9 @@ interface BloodPressureDao {
     suspend fun deleteBloodPressure(bloodPressure: BloodPressure)
 
     @Query("DELETE FROM blood_pressure_table WHERE  IdByInsertTime = :idByInsertTime")
-    suspend fun deleteById(idByInsertTime:Long)
+    suspend fun deleteById(idByInsertTime: Long)
 
     @Query("SELECT * FROM blood_pressure_table WHERE  IdByInsertTime = :idByInsertTime")
-    suspend fun getItemById(idByInsertTime:Long):BloodPressure
+    suspend fun getItemById(idByInsertTime: Long): BloodPressure
 
 }

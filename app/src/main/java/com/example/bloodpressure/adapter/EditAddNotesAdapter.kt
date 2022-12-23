@@ -5,24 +5,16 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bloodpressure.R
 import com.example.bloodpressure.callBack.OnCLickItemEditAddNote
+import com.example.bloodpressure.data.model.Note
 import com.example.bloodpressure.databinding.ItemDragChipBinding
 
-class EditAddNotesAdapter(private var callBack: OnCLickItemEditAddNote, private var context: Context) :
+class EditAddNotesAdapter(
+    private var callBack: OnCLickItemEditAddNote,
+    private var context: Context,
+    private var items: List<Note>
+) :
     RecyclerView.Adapter<EditAddNotesAdapter.EditAddNotesHolder>() {
-
-    var items: List<Int> = arrayListOf(
-        R.string.bq_tag_left,
-        R.string.bq_tag_right,
-        R.string.bq_tag_after_medication,
-        R.string.bq_tag_after_walking,
-        R.string.bq_tag_before_meal,
-        R.string.bq_tag_after_meal,
-        R.string.bq_tag_sitting,
-        R.string.bq_tag_lying,
-        R.string.legend_period
-    )
 
     inner class EditAddNotesHolder(val binding: ItemDragChipBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -37,7 +29,7 @@ class EditAddNotesAdapter(private var callBack: OnCLickItemEditAddNote, private 
         with(holder) {
             with(items[position]) {
                 binding.apply {
-                    acTvNote.text = context.getString(this@with)
+                    acTvNote.text = this@with.content
                     acIvDelete.setOnClickListener {
                         callBack.onClick()
                     }
@@ -49,7 +41,7 @@ class EditAddNotesAdapter(private var callBack: OnCLickItemEditAddNote, private 
     override fun getItemCount() = items.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateItems(items: List<Int>) {
+    fun updateItems(items: List<Note>) {
         this.items = items
         notifyDataSetChanged()
     }

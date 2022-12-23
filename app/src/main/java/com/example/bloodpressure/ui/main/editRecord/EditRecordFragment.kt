@@ -14,7 +14,7 @@ import com.example.bloodpressure.base.BaseFragment
 import com.example.bloodpressure.callBack.*
 import com.example.bloodpressure.databinding.FragmentEditRecordBinding
 import com.example.bloodpressure.utils.Stage
-import com.example.bloodpressure.utils.jsonToStrings
+import com.example.bloodpressure.utils.jsonToListString
 import com.example.bloodpressure.widgets.dialog.DialogStageTypeQuestion
 import com.example.bloodpressure.widgets.dialog.EditNoteDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -87,12 +87,12 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
                     val datas = arrayListOf(it.systolic, it.diastolic, it.pulse)
                     rpv.setRecord(datas)
                     hsv.updateData(datas)
-                    cpv.setParameter(it.record_time.jsonToStrings())
-                    val numberNote = it.other_text.jsonToStrings().size
+                    cpv.setParameter(it.record_time.jsonToListString())
+                    val numberNote = it.other_text.jsonToListString().size
                     acTvNote.text =
                         (if (numberNote == 0) "" else "$numberNote ").plus((getString(R.string.a_note)))
                 }
-                bottomSheet.setNoteSelected(it.other_text.jsonToStrings())
+                bottomSheet.setNoteSelected(it.other_text.jsonToListString())
 
             }
         }

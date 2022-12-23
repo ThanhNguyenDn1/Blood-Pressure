@@ -4,12 +4,12 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 
-fun ArrayList<String>.stringsToJson(): String {
+fun ArrayList<String>.listStringToJson(): String {
     val gson = Gson()
     return gson.toJson(this)
 }
 
-fun String.jsonToStrings(): ArrayList<String> {
+fun String.jsonToListString(): ArrayList<String> {
     val gson = Gson()
     return if (this.isEmpty()) {
         ArrayList()
@@ -28,11 +28,11 @@ fun ArrayList<String>.toNotes(): String {
     return notes
 }
 
-fun String.formatToDate():String{
-    val list=this.jsonToStrings()
+fun String.formatToDate(): String {
+    val list = this.jsonToListString()
     return "${list[1]}, ${list[2]}: ${list[3]}, "
 }
 
-fun Int.formatToBPM():String{
+fun Int.formatToBPM(): String {
     return "$this BPM"
 }

@@ -58,7 +58,7 @@ class HistoryListAdapter(
                 acTvDiastolic.text = diastolic.toString()
                 acTvStage.text = stage
                 acTvDatePulse.text = record_time.formatToDate().plus(pulse.formatToBPM())
-                acTvTag.text = other_text.jsonToStrings().toNotes()
+                acTvTag.text = other_text.jsonToListString().toNotes()
                 vLine.setBackgroundColor(
                     ContextCompat.getColor(
                         context, getColor(systolic, diastolic)
