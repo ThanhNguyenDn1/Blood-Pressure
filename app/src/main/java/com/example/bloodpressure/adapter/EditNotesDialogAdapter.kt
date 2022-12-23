@@ -8,26 +8,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bloodpressure.R
 import com.example.bloodpressure.callBack.OnCLickItemEditNoteDialog
+import com.example.bloodpressure.data.model.Note
 import com.example.bloodpressure.databinding.ItemChipBinding
 
 class EditNotesDialogAdapter(
     private var callBack: OnCLickItemEditNoteDialog,
     private var context: Context,
-    notes: ArrayList<String>
+    notesSelected: ArrayList<String>,
+    private var notes: List<Note>
 ) : RecyclerView.Adapter<EditNotesDialogAdapter.EditNotesDialogHolder>() {
 
-    private var itemNoteSelecteds =notes
-    var items: List<Int> = arrayListOf(
-        R.string.bq_tag_left,
-        R.string.bq_tag_right,
-        R.string.bq_tag_after_medication,
-        R.string.bq_tag_after_walking,
-        R.string.bq_tag_before_meal,
-        R.string.bq_tag_after_meal,
-        R.string.bq_tag_sitting,
-        R.string.bq_tag_lying,
-        R.string.legend_period
-    )
+    private var noteSelecteds = notesSelected
 
     inner class EditNotesDialogHolder(val binding: ItemChipBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -53,23 +44,23 @@ class EditNotesDialogAdapter(
     }
 
     private fun setDataItemNote(binding: ItemChipBinding, position: Int) {
-        with(items[position - 1]) {
+        with(notes[position - 1]) {
             binding.apply {
-                val note = context.getString(this@with)
+                val note = this@with.content
                 acTvNote.text = note
-                val drawableBg = if (itemNoteSelecteds.contains(note))
-                    R.drawable.bg_ripple_note_primary
-                else {
-                    R.drawable.bg_ripple_note
-                }
+                val drawableBg =
+                    if (noteSelecteds.contains(note)) R.drawable.bg_ripple_note_primary
+                    else {
+                        R.drawable.bg_ripple_note
+                    }
                 root.setBackgroundResource(drawableBg)
                 root.setOnClickListener {
-                    if (itemNoteSelecteds.contains(note)) {
-                        itemNoteSelecteds.remove(note)
+                    if (noteSelecteds.contains(note)) {
+                        noteSelecteds.remove(note)
                     } else {
-                        itemNoteSelecteds.add(note)
+                        noteSelecteds.add(note)
                     }
-                    notifyItemChanged(items.indexOf(this@with) + 1)
+                    notifyItemChanged(position - 1)
                 }
             }
         }
@@ -85,20 +76,13 @@ class EditNotesDialogAdapter(
         }
     }
 
-    override fun getItemCount() = items.size + 1
+    override fun getItemCount() = notes.size + 1
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateItems(items: List<Int>) {
-        this.items = items
+    fun updateItems(items: List<Note>) {
+        this.notes = items
         notifyDataSetChanged()
     }
 
-    fun getItemNoteSelected() = itemNoteSelecteds
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setItemNoteSelected(notes: ArrayList<String>) {
-        this.itemNoteSelecteds = notes
-        notifyDataSetChanged()
-    }
-
+    fun getItemNoteSelected() = noteSelecteds
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.FrameLayout
 import com.example.bloodpressure.adapter.EditNotesDialogAdapter
 import com.example.bloodpressure.callBack.OnCLickItemEditNoteDialog
+import com.example.bloodpressure.data.model.Note
 import com.example.bloodpressure.databinding.DialogEditNoteBinding
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -16,7 +17,8 @@ class EditNoteDialog(private var callBack: OnCLickItemEditNoteDialog) :
     BottomSheetDialogFragment() {
     private lateinit var binding: DialogEditNoteBinding
     private lateinit var adapter: EditNotesDialogAdapter
-    private var notes = ArrayList<String>()
+    private var notesSelected = ArrayList<String>()
+    private lateinit var notes:List<Note>
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState).apply {
@@ -48,7 +50,7 @@ class EditNoteDialog(private var callBack: OnCLickItemEditNoteDialog) :
     }
 
     private fun setupData() {
-        adapter = EditNotesDialogAdapter(callBack, requireContext(), notes)
+        adapter = EditNotesDialogAdapter(callBack, requireContext(), notesSelected, notes)
         binding.rvNotes.apply {
             adapter = this@EditNoteDialog.adapter
             layoutManager = FlexboxLayoutManager(requireContext()).apply {
@@ -58,9 +60,13 @@ class EditNoteDialog(private var callBack: OnCLickItemEditNoteDialog) :
         }
     }
 
-    fun setNoteSelected(notes: ArrayList<String>) {
-        this.notes = notes
-        callBack.saveItemNote(this.notes)
+    fun setNoteSelected(notesSelected: ArrayList<String>) {
+        this.notesSelected = notesSelected
+        callBack.saveItemNote(this.notesSelected)
+    }
+
+    fun updateNotes(notes: List<Note>?) {
+        this.notes= notes!!
     }
 
 }

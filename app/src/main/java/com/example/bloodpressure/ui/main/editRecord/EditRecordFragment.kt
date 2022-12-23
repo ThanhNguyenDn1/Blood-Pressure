@@ -1,6 +1,7 @@
 package com.example.bloodpressure.ui.main.editRecord
 
 
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.navigation.Navigation
 import com.example.bloodpressure.R
 import com.example.bloodpressure.base.BaseFragment
 import com.example.bloodpressure.callBack.*
+import com.example.bloodpressure.data.model.Note
 import com.example.bloodpressure.databinding.FragmentEditRecordBinding
 import com.example.bloodpressure.utils.Stage
 import com.example.bloodpressure.utils.jsonToListString
@@ -29,6 +31,7 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
     private lateinit var dialogStageTypeQuestion: DialogStageTypeQuestion
     private var isEditItem: Boolean = false
     private var idByInsertTime: Long = 0L
+    private var notes = ArrayList<Note>()
 
     override fun provideViewBinding(
         inflater: LayoutInflater, container: ViewGroup?
@@ -48,6 +51,7 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
         if (isEditItem) {
             viewModel.getItemByID(idByInsertTime)
         }
+        saveItemDefault()
     }
 
     override fun setUpView() {
@@ -93,8 +97,20 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
                         (if (numberNote == 0) "" else "$numberNote ").plus((getString(R.string.a_note)))
                 }
                 bottomSheet.setNoteSelected(it.other_text.jsonToListString())
-
             }
+        }
+        viewModel.getNotes().observe(viewLifecycleOwner) {
+            bottomSheet.updateNotes(it)
+        }
+    }
+
+    private fun saveItemDefault() {
+        if (!viewModel.isSaveItemDefault()) {
+            val item = viewModel.getNotesDefault()
+            for (i in 0..item.size - 1) {
+                viewModel.saveNoteDefault(Note(getString(item[i])))
+            }
+            viewModel.setSavedNotesDefault()
         }
     }
 
@@ -105,9 +121,7 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
             Navigation.findNavController(view).popBackStack()
         } else {
             val toast = Toast.makeText(
-                requireContext(),
-                getString(R.string.please_note),
-                Toast.LENGTH_SHORT
+                requireContext(), getString(R.string.please_note), Toast.LENGTH_SHORT
             )
             toast.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL, 0, 0)
             toast.show()
@@ -120,10 +134,7 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
     }
 
     override fun onHorizontalStageChange(
-        stage: Int,
-        stageRange: Int,
-        stageContent: Int,
-        colorStage: Int
+        stage: Int, stageRange: Int, stageContent: Int, colorStage: Int
     ) {
         viewModel.setStage(getString(stage))
         binding.apply {
@@ -134,7 +145,7 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
         }
     }
 
-    override fun onClick(stage: Stage) {
+    override fun onClickItemTypeDialog(stage: Stage) {
         dialogStageTypeQuestion.dismiss()
         Navigation.findNavController(requireActivity(), R.id.flTabContainer)
             .navigate(R.id.action_editRecordFragment_to_knowledgeDetailFragment)
@@ -145,7 +156,6 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
     }
 
     override fun onClickItemEditAddNote() {
-        bottomSheet.dismiss()
         Navigation.findNavController(requireActivity(), R.id.flTabContainer)
             .navigate(R.id.action_editRecordFragment_to_editAddNoteFragment)
     }

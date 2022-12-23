@@ -37,7 +37,7 @@ class TypeDialogAdapter(
                     it.tvRange.text = context.getString(this.getStageRange())
                 }
                 itemView.setOnClickListener {
-                    callBack.onClick(this)
+                    callBack.onClickItemTypeDialog(this)
                 }
             }
         }

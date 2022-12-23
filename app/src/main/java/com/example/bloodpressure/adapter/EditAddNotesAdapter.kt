@@ -31,7 +31,7 @@ class EditAddNotesAdapter(
                 binding.apply {
                     acTvNote.text = this@with.content
                     acIvDelete.setOnClickListener {
-                        callBack.onClick()
+                        callBack.onClickItemEditAddNote(this@with)
                     }
                 }
             }

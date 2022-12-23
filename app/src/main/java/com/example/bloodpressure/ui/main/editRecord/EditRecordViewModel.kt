@@ -3,9 +3,14 @@ package com.example.bloodpressure.ui.main.editRecord
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.bloodpressure.R
 import com.example.bloodpressure.base.BaseViewModel
+import com.example.bloodpressure.data.Preferences
 import com.example.bloodpressure.data.database.BloodPressureRepository
+import com.example.bloodpressure.data.database.note.NoteRepository
 import com.example.bloodpressure.data.model.BloodPressure
+import com.example.bloodpressure.data.model.Note
+import com.example.bloodpressure.utils.Constant.ITEMS_EDITED
 import com.example.bloodpressure.utils.listStringToJson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -13,10 +18,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class EditRecordViewModel @Inject constructor(val repository: BloodPressureRepository) :
+class EditRecordViewModel @Inject constructor(private val reposBlo: BloodPressureRepository, private val reposNote: NoteRepository, private val pref: Preferences) :
     BaseViewModel() {
 
     private var data: LiveData<List<BloodPressure>>
+    private var notes: LiveData<List<Note>>
     private var itemUpdate: MutableLiveData<BloodPressure>
     private var stage = "Normal"
     private var systolic = 100
@@ -26,39 +32,52 @@ class EditRecordViewModel @Inject constructor(val repository: BloodPressureRepos
     private var data_changes_time = 0L
     private var other_text = ""
 
+    var items: List<Int> = arrayListOf(
+        R.string.bq_tag_left,
+        R.string.bq_tag_right,
+        R.string.bq_tag_after_medication,
+        R.string.bq_tag_after_walking,
+        R.string.bq_tag_before_meal,
+        R.string.bq_tag_after_meal,
+        R.string.bq_tag_sitting,
+        R.string.bq_tag_lying,
+        R.string.legend_period
+    )
+
     init {
-        data = repository.readAllData
+        data = reposBlo.readAllData
+        notes = reposNote.readAllNote
         itemUpdate = MutableLiveData()
     }
 
     fun addNewBloodPressure() {
         val bloodPressure = getBloodPressure(System.currentTimeMillis())
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addBloodPressure(bloodPressure)
+            reposBlo.addBloodPressure(bloodPressure)
         }
     }
 
     fun updateBloodPressure() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updateItemBloodPressure(getBloodPressure(itemUpdate.value!!.IdByInsertTime))
+            reposBlo.updateItemBloodPressure(getBloodPressure(itemUpdate.value!!.IdByInsertTime))
         }
     }
 
     fun deleteBloodPressure(bloodPressure: BloodPressure) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteBloodPressure(bloodPressure)
+            reposBlo.deleteBloodPressure(bloodPressure)
         }
     }
 
     fun deleteById(idByInsertTime: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteById(idByInsertTime)
+            reposBlo.deleteById(idByInsertTime)
         }
     }
 
     fun getItemByID(idByInsertTime: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            itemUpdate.postValue(repository.getItemById(idByInsertTime))
+            itemUpdate.postValue(reposBlo.getItemById(idByInsertTime))
         }
     }
 
@@ -98,4 +117,20 @@ class EditRecordViewModel @Inject constructor(val repository: BloodPressureRepos
     fun isEnoughtSave(): Boolean {
         return this.systolic > this.diastolic
     }
+
+    fun isSaveItemDefault() = pref.getBoolen(false, ITEMS_EDITED)
+
+    fun saveNoteDefault(note: Note) {
+        viewModelScope.launch(Dispatchers.IO) {
+            reposNote.addNote(note)
+        }
+    }
+
+    fun setSavedNotesDefault() {
+        pref.SaveBoolen(true, ITEMS_EDITED)
+    }
+
+    fun getNotes()=notes
+
+    fun getNotesDefault() = items
 }
