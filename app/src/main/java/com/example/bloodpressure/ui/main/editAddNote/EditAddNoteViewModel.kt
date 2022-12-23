@@ -6,7 +6,6 @@ import com.example.bloodpressure.base.BaseViewModel
 import com.example.bloodpressure.data.Preferences
 import com.example.bloodpressure.data.database.note.NoteRepository
 import com.example.bloodpressure.data.model.Note
-import com.example.bloodpressure.utils.Constant.ITEMS_EDITED
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,9 +22,12 @@ class EditAddNoteViewModel @Inject constructor(
         notes = repository.readAllNote
     }
 
-    fun saveListDefault(note: Note) {
+    fun saveListDefault() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addNote(note)
+            repository.deleteTable()
+            notes.value!!.forEach {
+                repository.addNote(it)
+            }
         }
     }
 
@@ -34,10 +36,4 @@ class EditAddNoteViewModel @Inject constructor(
     fun isNoteExist(contentNote: String): Boolean {
         return notes.value!!.any { it.content.equals(contentNote) }
     }
-
-    fun deleteNote(note: Note){
-        viewModelScope.launch(Dispatchers.IO)
-        { repository.deleteNote(note) }
-    }
-
 }

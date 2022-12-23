@@ -20,4 +20,8 @@ class NoteRepository @Inject constructor(private val dao: NoteDao) {
     }
 
     suspend fun getById(id: Int) = dao.getItemById(id)
+
+    suspend fun deleteTable(){
+        dao.deleteTable()
+    }
 }

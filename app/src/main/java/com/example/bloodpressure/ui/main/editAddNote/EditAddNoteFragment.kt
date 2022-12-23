@@ -25,7 +25,7 @@ class EditAddNoteFragment : BaseFragment<EditAddNoteViewModel, FragmentEditAddNo
     private lateinit var adapter: EditAddNotesAdapter
     private lateinit var dialogInput: InputEditNoteDialog
     private lateinit var dialogConfirmDelete: DialogConfirmDeleteNote
-    private lateinit var currentNote:Note
+    private lateinit var currentNote: Note
 
     override fun provideViewBinding(
         inflater: LayoutInflater, container: ViewGroup?
@@ -46,6 +46,9 @@ class EditAddNoteFragment : BaseFragment<EditAddNoteViewModel, FragmentEditAddNo
             }
             acIvClose.setOnClickListener {
                 Navigation.findNavController(it).popBackStack()
+            }
+            acbSave.setOnClickListener {
+                viewModel.saveListDefault()
             }
         }
     }
@@ -73,17 +76,17 @@ class EditAddNoteFragment : BaseFragment<EditAddNoteViewModel, FragmentEditAddNo
     }
 
     override fun onClickItemEditAddNote(note: Note) {
-        currentNote=note
-        dialogConfirmDelete.show(childFragmentManager,"DialogConfirmDeleteNote ")
+        currentNote = note
+        dialogConfirmDelete.show(childFragmentManager, "DialogConfirmDeleteNote ")
     }
 
     override fun onClickSaveEditNote(contentNote: String) {
         if (!viewModel.isNoteExist(contentNote)) {
-            viewModel.saveListDefault(Note(contentNote))
+            adapter.addNote(Note(contentNote))
         }
     }
 
     override fun onClickConfirmDeleteNote() {
-        viewModel.deleteNote(currentNote)
+        adapter.subtractNote(currentNote)
     }
 }

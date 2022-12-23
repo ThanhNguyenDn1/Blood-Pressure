@@ -44,6 +44,7 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
             cpv.addCallBack(this@EditRecordFragment)
         }
         dialogStageTypeQuestion = DialogStageTypeQuestion(this)
+        dialogConfirmDeleteBlood=DialogConfirmDeleteBlood(this)
         bottomSheet = EditNoteDialog(this)
         idByInsertTime = arguments?.let { EditRecordFragmentArgs.fromBundle(it).idItem }!!
         isEditItem = idByInsertTime != 0L

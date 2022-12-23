@@ -12,7 +12,7 @@ import com.example.bloodpressure.databinding.ItemDragChipBinding
 class EditAddNotesAdapter(
     private var callBack: OnCLickItemEditAddNote,
     private var context: Context,
-    private var items: List<Note>
+    private var notes: ArrayList<Note>
 ) :
     RecyclerView.Adapter<EditAddNotesAdapter.EditAddNotesHolder>() {
 
@@ -27,7 +27,7 @@ class EditAddNotesAdapter(
 
     override fun onBindViewHolder(holder: EditAddNotesHolder, position: Int) {
         with(holder) {
-            with(items[position]) {
+            with(notes[position]) {
                 binding.apply {
                     acTvNote.text = this@with.content
                     acIvDelete.setOnClickListener {
@@ -38,11 +38,28 @@ class EditAddNotesAdapter(
         }
     }
 
-    override fun getItemCount() = items.size
+    override fun getItemCount() = notes.size
+
+
+    fun updateItems(notes: List<Note>) {
+        this.notes = notes as ArrayList<Note>
+        dataChange()
+    }
+
+    fun getNotes() = notes
+
+    fun addNote(note: Note) {
+        notes.add(note)
+        dataChange()
+    }
+
+    fun subtractNote(note: Note) {
+        notes.remove(note)
+        dataChange()
+    }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateItems(items: List<Note>) {
-        this.items = items
+    private fun dataChange() {
         notifyDataSetChanged()
     }
 }
