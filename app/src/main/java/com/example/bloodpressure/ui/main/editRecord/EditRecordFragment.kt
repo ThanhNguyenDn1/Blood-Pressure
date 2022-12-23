@@ -1,8 +1,11 @@
 package com.example.bloodpressure.ui.main.editRecord
 
+
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -15,6 +18,7 @@ import com.example.bloodpressure.utils.jsonToStrings
 import com.example.bloodpressure.widgets.dialog.DialogStageTypeQuestion
 import com.example.bloodpressure.widgets.dialog.EditNoteDialog
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordBinding>(),
@@ -95,10 +99,19 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
     }
 
     private fun saveNewBloodP(view: View) {
-        if (isEditItem) viewModel.updateBloodPressure()
-        else viewModel.addNewBloodPressure()
-
-        Navigation.findNavController(view).popBackStack()
+        if (viewModel.isEnoughtSave()) {
+            if (isEditItem) viewModel.updateBloodPressure()
+            else viewModel.addNewBloodPressure()
+            Navigation.findNavController(view).popBackStack()
+        } else {
+            val toast = Toast.makeText(
+                requireContext(),
+                getString(R.string.please_note),
+                Toast.LENGTH_SHORT
+            )
+            toast.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL, 0, 0)
+            toast.show()
+        }
     }
 
     override fun onRecordPickerChange(datas: ArrayList<Int>) {
@@ -106,7 +119,12 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
         viewModel.setDataBloodP(datas)
     }
 
-    override fun onHorizontalStageChange(stage: Int, stageRange: Int, stageContent: Int, colorStage: Int) {
+    override fun onHorizontalStageChange(
+        stage: Int,
+        stageRange: Int,
+        stageContent: Int,
+        colorStage: Int
+    ) {
         viewModel.setStage(getString(stage))
         binding.apply {
             acTvStage.text = getString(stage)

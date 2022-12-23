@@ -73,8 +73,8 @@ class TrackerFragment : BaseFragment<TrackerViewModel, FragmentTrackerBinding>()
                     clEmptyCover.root.visibility = View.GONE
                     clTrackerAdd.visibility = View.VISIBLE
                 }
-                adapter.updateData(it)
-                //binding.tcl.updateData(it)
+                adapter.updateData(it.reversed())
+                binding.tcl.updateData(it)
             }
         }
     }

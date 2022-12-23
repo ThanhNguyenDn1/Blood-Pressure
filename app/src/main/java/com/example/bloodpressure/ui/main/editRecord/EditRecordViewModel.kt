@@ -75,7 +75,7 @@ class EditRecordViewModel @Inject constructor(val repository: BloodPressureRepos
         )
     }
 
-    fun setDataBloodP(datas:ArrayList<Int>) {
+    fun setDataBloodP(datas: ArrayList<Int>) {
         this.systolic = datas[0]
         this.diastolic = datas[1]
         this.pulse = datas[2]
@@ -94,4 +94,8 @@ class EditRecordViewModel @Inject constructor(val repository: BloodPressureRepos
     }
 
     fun getItemUpdate() = itemUpdate
+
+    fun isEnoughtSave(): Boolean {
+        return this.systolic > this.diastolic
+    }
 }

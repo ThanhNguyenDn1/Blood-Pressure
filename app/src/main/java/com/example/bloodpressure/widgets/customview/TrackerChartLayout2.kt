@@ -8,7 +8,7 @@ import com.example.bloodpressure.utils.Stage
 
 
 class TrackerChartLayout2 : View {
-    private var paddingLeft = 100f
+    private var paddingLeft = 70f
     private var paddingVertical = 50f
     private var padding = 5f
     private var paint: Paint
@@ -18,6 +18,7 @@ class TrackerChartLayout2 : View {
     private var mH = 0f
     private var mW = 0f
     private lateinit var rectF: RectF
+    private var itemY= arrayListOf(20,105, 190, 275, 360)
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
@@ -30,11 +31,13 @@ class TrackerChartLayout2 : View {
         paint.apply {
             color = Color.WHITE
             setDither(true);
-            setStyle(Paint.Style.STROKE);
-            setStrokeJoin(Paint.Join.ROUND);
-            setStrokeCap(Paint.Cap.ROUND);
-            setStrokeWidth(3f);
+            textSize = 30f
+            //setStyle(Paint.Style.STROKE);
+            setStrokeJoin(Paint.Join.ROUND)
+            setStrokeCap(Paint.Cap.ROUND)
         }
+
+        itemY.reverse()
 
 
         //rectF
@@ -48,7 +51,6 @@ class TrackerChartLayout2 : View {
             setStyle(Paint.Style.STROKE)
             strokeWidth = 3f
             color = Color.WHITE
-            setAlpha(0.5f)
         }
         path = Path()
 
@@ -63,18 +65,26 @@ class TrackerChartLayout2 : View {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        drawLine()
-        canvas!!.drawPath(path, paintCl)
+        drawLine(canvas)
+        drawText(canvas)
+
 
     }
 
-    private fun drawLine() {
+    private fun drawText(canvas: Canvas?) {
+        val spaceItem = (mH - 2 * paddingVertical) / 4
+        for (i in 0..4) {
+            canvas!!.drawText(itemY[i].toString(), 0f, i * spaceItem + paddingVertical + 7f, paint)
+        }
+    }
+
+    private fun drawLine(canvas: Canvas?) {
         val spaceItem = (mH - 2 * paddingVertical) / 4
         for (i in 0..4) {
             path.moveTo(paddingLeft, i * spaceItem + paddingVertical)
             path.lineTo(mW, i * spaceItem + paddingVertical)
-
         }
+        canvas!!.drawPath(path, paintCl)
     }
 
 }

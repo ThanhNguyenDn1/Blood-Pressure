@@ -44,7 +44,7 @@ class TrackerChartLayout : ConstraintLayout {
             getXAxis().setDrawAxisLine(false);
             setDrawGridBackground(false);
             getXAxis().setDrawGridLines(false);
-            getAxisLeft().setDrawGridLines(false);
+            getAxisLeft().setDrawGridLines(true);
             getAxisRight().setDrawGridLines(false);
             //  getAxisLeft().setEnabled(false);
             getAxisRight().setEnabled(false);
@@ -69,7 +69,7 @@ class TrackerChartLayout : ConstraintLayout {
             setXOffset(30f);
             setCenterAxisLabels(true);
             setLabelCount(7)
-            textColor=Color.WHITE
+            textColor = Color.WHITE
         }
 
 
@@ -77,10 +77,10 @@ class TrackerChartLayout : ConstraintLayout {
             setDrawGridLines(false)
             //typeface = tfLight
             setLabelCount(5, false)
-           // valueFormatter = custom
+            // valueFormatter = custom
             spaceTop = 15f
             axisMinimum = 20f
-            textColor=Color.WHITE
+            textColor = Color.WHITE
         }
     }
 

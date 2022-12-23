@@ -286,7 +286,7 @@
                     app:layout_constraintStart_toEndOf="@+id/ac_tv_pulse_num" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <com.example.bloodpressure.widgets.customview.TrackerChartLayout2
+                <com.example.bloodpressure.widgets.customview.TrackerChartLayout3
                     android:id="@+id/tcl"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_198"

@@ -130,8 +130,8 @@ class RecordPickerView(context: Context, attrs: AttributeSet?) : ConstraintLayou
         this.callBack = callBack
     }
 
-    fun setRecord(datas:ArrayList<Int>) {
-        this.datas=datas
+    fun setRecord(datas: ArrayList<Int>) {
+        this.datas = datas
         binding.apply {
             npk1.value = datas[0]
             npk2.value = datas[1]
