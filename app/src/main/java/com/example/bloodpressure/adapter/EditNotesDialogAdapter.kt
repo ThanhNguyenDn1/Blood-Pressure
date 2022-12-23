@@ -2,6 +2,7 @@ package com.example.bloodpressure.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,7 +61,7 @@ class EditNotesDialogAdapter(
                     } else {
                         noteSelecteds.add(note)
                     }
-                    notifyItemChanged(position - 1)
+                    notifyItemChanged(position)
                 }
             }
         }

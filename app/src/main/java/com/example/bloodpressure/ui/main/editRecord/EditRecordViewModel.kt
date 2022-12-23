@@ -63,12 +63,6 @@ class EditRecordViewModel @Inject constructor(private val reposBlo: BloodPressur
         }
     }
 
-    fun deleteBloodPressure(bloodPressure: BloodPressure) {
-        viewModelScope.launch(Dispatchers.IO) {
-            reposBlo.deleteBloodPressure(bloodPressure)
-        }
-    }
-
     fun deleteById(idByInsertTime: Long) {
         viewModelScope.launch(Dispatchers.IO) {
             reposBlo.deleteById(idByInsertTime)

@@ -1,7 +1,5 @@
 package com.example.bloodpressure.ui.main.editRecord
 
-
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -11,27 +9,28 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.bloodpressure.R
+import com.example.bloodpressure.adapter.EditNotesDialogAdapter
 import com.example.bloodpressure.base.BaseFragment
 import com.example.bloodpressure.callBack.*
 import com.example.bloodpressure.data.model.Note
 import com.example.bloodpressure.databinding.FragmentEditRecordBinding
 import com.example.bloodpressure.utils.Stage
 import com.example.bloodpressure.utils.jsonToListString
+import com.example.bloodpressure.widgets.dialog.DialogConfirmDeleteBlood
 import com.example.bloodpressure.widgets.dialog.DialogStageTypeQuestion
 import com.example.bloodpressure.widgets.dialog.EditNoteDialog
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordBinding>(),
     ListenerRecordPicker, ListenerHorizontalStage, ListenerCalendarPicker, OnClickItemTypeDialog,
-    OnCLickItemEditNoteDialog {
+    OnCLickItemEditNoteDialog, OnClickConfirmDeleteBlood {
     override val viewModel: EditRecordViewModel by viewModels()
     private lateinit var bottomSheet: EditNoteDialog
     private lateinit var dialogStageTypeQuestion: DialogStageTypeQuestion
     private var isEditItem: Boolean = false
     private var idByInsertTime: Long = 0L
-    private var notes = ArrayList<Note>()
+    private lateinit var dialogConfirmDeleteBlood: DialogConfirmDeleteBlood
 
     override fun provideViewBinding(
         inflater: LayoutInflater, container: ViewGroup?
@@ -77,8 +76,7 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
             }
 
             tvDelete.setOnClickListener {
-                viewModel.deleteById(idByInsertTime)
-                Navigation.findNavController(it).popBackStack()
+                dialogConfirmDeleteBlood.show(childFragmentManager, "DialogConfirmDeleteBlood")
             }
         }
     }
@@ -165,6 +163,11 @@ class EditRecordFragment : BaseFragment<EditRecordViewModel, FragmentEditRecordB
         val numberNote = itemNoteSelected.size
         binding.acTvNote.text =
             (if (numberNote == 0) "" else "$numberNote ").plus((getString(R.string.a_note)))
+    }
+
+    override fun onClickConfirmDeleteBlood() {
+        viewModel.deleteById(idByInsertTime)
+        Navigation.findNavController(requireActivity(), R.id.flTabContainer).popBackStack()
     }
 
 }
